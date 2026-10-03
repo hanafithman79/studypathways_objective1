@@ -110,3 +110,7 @@ With only 5 folds, paired t-tests have 4 degrees of freedom and low power; repor
 
 All outputs saved in ./objective1_outputs_leakage_safe/ and ./objective1_rigorous_results_leakage_safe.csv  (total 5.3 min)
 EXIT=0
+To https://github.com/hanafithman79/studypathways_objective1
+   1d17a29..ecf1f53  claude/stoic-brahmagupta-2nvz8v -> claude/stoic-brahmagupta-2nvz8v
+branch 'claude/stoic-brahmagupta-2nvz8v' set up to track 'origin/claude/stoic-brahmagupta-2nvz8v'.
+PUSHED=0
