@@ -1,0 +1,11 @@
+Model,Category,Macro-Track Top-1 (%),Programme Top-1 (%),Programme Top-3 (%),Programme Macro-F1,p-value vs Proposed (Macro-F1),Holm-adj. p
+Logistic Regression,A: Traditional ML,29.26 ± 0.90,10.34 ± 0.74,40.29 ± 1.63,0.050 ± 0.003,0.2507,1.0000
+Random Forest,A: Traditional ML,29.26 ± 0.59,29.43 ± 0.64,69.69 ± 0.47,0.074 ± 0.007,0.0001,0.0005
+HistGradientBoosting,A: Traditional ML,36.92 ± 0.90,31.73 ± 0.75,75.20 ± 0.59,0.071 ± 0.004,0.0003,0.0022
+Static MLP,B: Single-branch deep,27.49 ± 1.12,8.25 ± 1.73,39.33 ± 3.55,0.039 ± 0.004,0.0069,0.0414
+Standalone LSTM,B: Single-branch deep,20.69 ± 0.24,4.32 ± 1.73,23.62 ± 4.87,0.023 ± 0.003,0.0004,0.0025
+Hybrid-1 (MLP+CNN+LSTM),C: Hybrid baseline,27.52 ± 1.51,12.60 ± 2.45,42.78 ± 3.88,0.051 ± 0.007,0.3019,1.0000
+Hybrid-2 (MLP+BiLSTM),C: Hybrid baseline,28.07 ± 1.09,12.88 ± 1.82,44.35 ± 2.16,0.050 ± 0.009,0.2881,1.0000
+Hybrid-3 (MLP+GRU),C: Hybrid baseline,28.42 ± 1.43,11.88 ± 2.25,42.83 ± 2.76,0.050 ± 0.007,0.2847,1.0000
+Hybrid-4 (MLP+Transformer),C: Hybrid baseline,27.73 ± 1.24,11.67 ± 2.34,41.92 ± 4.23,0.050 ± 0.008,0.6085,1.0000
+Proposed (MLP+CausalTCN+LSTM),D: Proposed,28.27 ± 1.29,12.13 ± 0.81,42.75 ± 1.28,0.053 ± 0.005,-,-

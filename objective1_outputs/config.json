@@ -1,0 +1,51 @@
+{
+  "seed": 42,
+  "n_splits": 5,
+  "epochs": 15,
+  "batch_size": 128,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "grad_clip": 5.0,
+  "rf_trees": 100,
+  "hgb_iter": 100,
+  "use_saber_pro_features": true,
+  "temporal_steps": [
+    [
+      "MAT_S11",
+      "CR_S11",
+      "CC_S11",
+      "BIO_S11"
+    ],
+    [
+      "ENG_S11",
+      "STEM_AVG",
+      "HUM_AVG",
+      "STEM_HUM_RATIO"
+    ],
+    [
+      "G_SC",
+      "PERCENTILE",
+      "2ND_DECILE",
+      "QUARTILE"
+    ]
+  ],
+  "static_cols": [
+    "GENDER",
+    "STRATUM",
+    "SISBEN",
+    "SCHOOL_TYPE",
+    "SCHOOL_NAT",
+    "EDU_FATHER",
+    "EDU_MOTHER",
+    "OCC_FATHER",
+    "OCC_MOTHER",
+    "REVENUE",
+    "PEOPLE_HOUSE",
+    "INTERNET",
+    "COMPUTER",
+    "CAR"
+  ],
+  "device": "cpu",
+  "quick_test": false,
+  "torch": "2.14.1+cu130"
+}
