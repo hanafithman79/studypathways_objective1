@@ -1,0 +1,134 @@
+[tuning] trials/model=8 jobs=4 quick=False resume=True saber_pro_features=False
+[data] loaded 12411 rows x 44 columns
+[data] N=12411  track majority floor 43.6%  programme majority floor 42.8%
+[jobs] 100 (task x model x fold) jobs, each = 8 inner trials + final fits
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:  9.1min
+[Parallel(n_jobs=4)]: Done  64 tasks      | elapsed: 26.9min
+[Parallel(n_jobs=4)]: Done 100 out of 100 | elapsed: 38.8min finished
+
+========================================================================================================================
+TRACK / default
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       36.85 ± 1.25 0.345 ± 0.013      39.42 ± 1.34                   0.0606      0.3233
+                Random Forest     A: Traditional ML       41.75 ± 1.06 0.346 ± 0.009      35.15 ± 1.00                   0.0539      0.3233
+         HistGradientBoosting     A: Traditional ML       38.50 ± 1.12 0.348 ± 0.010      36.89 ± 1.00                   0.0446      0.3120
+                   Static MLP B: Single-branch deep       31.18 ± 2.30 0.292 ± 0.012      33.88 ± 0.44                   0.0013      0.0120
+              Standalone LSTM B: Single-branch deep       32.12 ± 1.27 0.288 ± 0.012      35.37 ± 1.31                   0.0151      0.1211
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       35.34 ± 2.50 0.329 ± 0.018      37.16 ± 0.95                   0.8096      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       35.80 ± 0.94 0.331 ± 0.009      37.34 ± 0.67                   0.8231      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       35.58 ± 2.14 0.329 ± 0.018      36.84 ± 1.38                   0.8035      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       34.75 ± 2.33 0.323 ± 0.019      36.76 ± 0.84                   0.1321      0.5285
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       35.71 ± 1.70 0.330 ± 0.012      37.02 ± 0.35                        -           -
+   Majority class (reference)             reference       43.57 ± 0.02 0.152 ± 0.000      25.00 ± 0.00                        -           -
+
+========================================================================================================================
+TRACK / tuned_macro_f1
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       40.60 ± 3.91 0.350 ± 0.011      37.46 ± 1.69                   0.0000      0.0003
+                Random Forest     A: Traditional ML       40.69 ± 2.49 0.343 ± 0.011      36.11 ± 1.98                   0.1583      0.7102
+         HistGradientBoosting     A: Traditional ML       39.51 ± 1.90 0.345 ± 0.007      36.51 ± 2.18                   0.0741      0.4446
+                   Static MLP B: Single-branch deep       38.10 ± 4.75 0.315 ± 0.022      33.48 ± 0.84                   0.0272      0.1901
+              Standalone LSTM B: Single-branch deep       33.91 ± 4.85 0.283 ± 0.012      33.48 ± 2.96                   0.0013      0.0102
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       41.99 ± 1.91 0.343 ± 0.030      35.72 ± 2.63                   0.5161      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       37.10 ± 2.75 0.331 ± 0.012      36.55 ± 2.01                   0.6057      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       39.80 ± 3.07 0.348 ± 0.012      36.96 ± 1.33                   0.1420      0.7102
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       38.55 ± 2.99 0.333 ± 0.010      35.54 ± 1.56                   0.7613      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       39.34 ± 3.79 0.335 ± 0.012      36.20 ± 1.36                        -           -
+   Majority class (reference)             reference       43.57 ± 0.02 0.152 ± 0.000      25.00 ± 0.00                        -           -
+
+========================================================================================================================
+TRACK / tuned_accuracy
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       45.71 ± 0.80 0.275 ± 0.028      30.70 ± 1.73                   0.1045      0.6269
+                Random Forest     A: Traditional ML       45.56 ± 0.56 0.280 ± 0.018      30.99 ± 0.99                   0.0731      0.5119
+         HistGradientBoosting     A: Traditional ML       43.06 ± 1.51 0.330 ± 0.021      33.76 ± 1.80                   0.1505      0.7527
+                   Static MLP B: Single-branch deep       42.75 ± 0.69 0.280 ± 0.011      29.68 ± 0.80                   0.0580      0.4640
+              Standalone LSTM B: Single-branch deep       43.36 ± 1.10 0.249 ± 0.028      28.49 ± 1.27                   0.0099      0.0888
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       44.26 ± 1.77 0.314 ± 0.018      33.28 ± 2.29                   0.5306      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       42.55 ± 3.38 0.309 ± 0.019      32.80 ± 1.77                   0.7450      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       44.34 ± 1.28 0.306 ± 0.018      32.28 ± 0.93                   0.9972      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       43.74 ± 2.55 0.301 ± 0.021      32.66 ± 1.59                   0.6317      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       43.64 ± 2.30 0.306 ± 0.012      32.34 ± 1.44                        -           -
+   Majority class (reference)             reference       43.57 ± 0.02 0.152 ± 0.000      25.00 ± 0.00                        -           -
+
+========================================================================================================================
+PROGRAM / default
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%) Top-3 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML        9.38 ± 0.54       39.44 ± 1.44 0.047 ± 0.003      15.81 ± 3.46                   0.2137      1.0000
+                Random Forest     A: Traditional ML       29.20 ± 0.87       70.09 ± 0.34 0.067 ± 0.004       7.52 ± 0.48                   0.0111      0.0666
+         HistGradientBoosting     A: Traditional ML       31.04 ± 0.80       74.45 ± 0.55 0.069 ± 0.005       7.38 ± 0.44                   0.0022      0.0198
+                   Static MLP B: Single-branch deep        8.14 ± 1.91       39.27 ± 3.66 0.038 ± 0.006      10.03 ± 1.71                   0.0053      0.0371
+              Standalone LSTM B: Single-branch deep        4.67 ± 1.47       24.29 ± 3.48 0.026 ± 0.006      12.80 ± 1.24                   0.0023      0.0198
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       12.63 ± 3.19       43.80 ± 3.98 0.054 ± 0.010      15.63 ± 1.85                   0.4831      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       13.29 ± 1.91       44.68 ± 2.37 0.053 ± 0.009      14.41 ± 1.76                   0.5659      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       11.49 ± 1.82       43.55 ± 2.49 0.052 ± 0.009      14.02 ± 2.84                   0.9838      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       11.71 ± 1.85       41.87 ± 3.65 0.050 ± 0.003      14.10 ± 0.52                   0.3627      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       11.49 ± 1.32       42.00 ± 2.09 0.052 ± 0.005      14.89 ± 0.80                        -           -
+   Majority class (reference)             reference       42.85 ± 0.02                  - 0.031 ± 0.001       5.16 ± 0.14                        -           -
+
+========================================================================================================================
+PROGRAM / tuned_macro_f1
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%) Top-3 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       38.00 ± 3.31       77.47 ± 3.06 0.076 ± 0.011       8.68 ± 2.54                   0.7031      1.0000
+                Random Forest     A: Traditional ML       36.24 ± 6.42       76.49 ± 6.10 0.067 ± 0.005       7.16 ± 0.64                   0.1333      0.7997
+         HistGradientBoosting     A: Traditional ML       32.91 ± 3.92       75.76 ± 3.76 0.066 ± 0.003       6.94 ± 0.50                   0.0997      0.6976
+                   Static MLP B: Single-branch deep       31.00 ± 9.80       72.60 ± 9.98 0.065 ± 0.005       7.55 ± 1.76                   0.0691      0.5530
+              Standalone LSTM B: Single-branch deep      33.75 ± 16.30      69.19 ± 19.96 0.047 ± 0.017       7.64 ± 3.27                   0.0154      0.1383
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       36.35 ± 3.02       76.44 ± 2.43 0.071 ± 0.009       8.11 ± 1.09                   0.2315      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       36.36 ± 2.24       77.08 ± 1.08 0.078 ± 0.009       8.70 ± 1.18                   0.9438      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       35.26 ± 1.20       76.30 ± 0.67 0.081 ± 0.010       9.41 ± 1.64                   0.2288      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       34.80 ± 2.61       76.10 ± 2.47 0.072 ± 0.011       8.06 ± 1.57                   0.5021      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       37.02 ± 2.39       76.46 ± 1.49 0.078 ± 0.011       9.39 ± 2.34                        -           -
+   Majority class (reference)             reference       42.85 ± 0.02                  - 0.031 ± 0.001       5.16 ± 0.14                        -           -
+
+========================================================================================================================
+PROGRAM / tuned_top3
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%) Top-3 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       42.76 ± 1.50       81.67 ± 1.21 0.049 ± 0.008       5.89 ± 0.40                   0.1590      0.3248
+                Random Forest     A: Traditional ML       43.57 ± 0.41       82.11 ± 0.71 0.045 ± 0.004       5.67 ± 0.24                   0.0388      0.3105
+         HistGradientBoosting     A: Traditional ML       41.43 ± 1.37       81.11 ± 0.65 0.055 ± 0.005       6.06 ± 0.32                   0.0516      0.3248
+                   Static MLP B: Single-branch deep       42.54 ± 1.04       80.98 ± 1.13 0.047 ± 0.007       5.78 ± 0.47                   0.0464      0.3248
+              Standalone LSTM B: Single-branch deep       42.61 ± 0.23       79.71 ± 0.39 0.038 ± 0.002       5.31 ± 0.12                   0.0087      0.0780
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       43.24 ± 0.53       81.50 ± 0.65 0.048 ± 0.005       5.81 ± 0.26                   0.0689      0.3248
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       41.54 ± 2.71       80.80 ± 2.00 0.057 ± 0.011       6.37 ± 0.71                   0.5640      0.5640
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       43.62 ± 0.42       81.73 ± 0.52 0.050 ± 0.004       5.97 ± 0.23                   0.0652      0.3248
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       42.34 ± 0.86       81.18 ± 0.70 0.049 ± 0.002       5.80 ± 0.12                   0.0603      0.3248
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       41.83 ± 1.66       80.44 ± 0.94 0.062 ± 0.010       6.67 ± 0.86                        -           -
+   Majority class (reference)             reference       42.85 ± 0.02                  - 0.031 ± 0.001       5.16 ± 0.14                        -           -
+
+OBJECTIVE 1 PART 2 - TRACK HEAD & TUNING
+======================================================================
+N=12411 | trials/model=8 | nested inner hold-out 80/20 | saber_pro_features=False
+majority floors: track 43.6%, programme 42.8%
+
+## TRACK TASK
+[default] best Macro-F1: HistGradientBoosting 0.348 | best accuracy: Random Forest 41.7% | proposed: F1 0.330, acc 35.7% | majority acc 43.6%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['HistGradientBoosting']
+[tuned_macro_f1] best Macro-F1: Logistic Regression 0.350 | best accuracy: Hybrid-1 (MLP+CNN+LSTM) 42.0% | proposed: F1 0.335, acc 39.3% | majority acc 43.6%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['Logistic Regression']
+[tuned_accuracy] best Macro-F1: HistGradientBoosting 0.330 | best accuracy: Logistic Regression 45.7% | proposed: F1 0.306, acc 43.6% | majority acc 43.6%
+    significantly (p<0.05, uncorrected) better than: ['Standalone LSTM']; significantly worse than: none
+    tuning gain for Proposed (Macro-F1): 0.330 -> 0.335
+    80% track-accuracy target: best observed 45.7% -> NOT MET
+
+## PROGRAM TASK
+[default] best Macro-F1: HistGradientBoosting 0.069 | best accuracy: HistGradientBoosting 31.0% | proposed: F1 0.052, acc 11.5%, top3 42.0% | majority acc 42.8%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[tuned_macro_f1] best Macro-F1: Hybrid-3 (MLP+GRU) 0.081 | best accuracy: Logistic Regression 38.0% | proposed: F1 0.078, acc 37.0%, top3 76.5% | majority acc 42.8%
+    significantly (p<0.05, uncorrected) better than: ['Standalone LSTM']; significantly worse than: none
+[tuned_top3] best Macro-F1: Proposed (MLP+CausalTCN+LSTM) 0.062 | best accuracy: Hybrid-3 (MLP+GRU) 43.6% | proposed: F1 0.062, acc 41.8%, top3 80.4% | majority acc 42.8%
+    significantly (p<0.05, uncorrected) better than: ['Random Forest', 'Static MLP', 'Standalone LSTM']; significantly worse than: none
+    tuning gain for Proposed (Macro-F1): 0.052 -> 0.078
+    85% Top-3 target: best observed 82.1% -> NOT MET
+
+Selection used ONLY the inner 20% hold-out of each outer-training set; outer folds were evaluated once. Paired t-tests use 5 folds (4 d.o.f.) and have low power.
+
+All outputs in ./objective1_outputs_tuning/  (total 39.0 min)
+EXIT=0

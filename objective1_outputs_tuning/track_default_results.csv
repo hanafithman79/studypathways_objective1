@@ -1,0 +1,12 @@
+Model,Category,Top-1 accuracy (%),Macro-F1,Balanced acc. (%),p vs Proposed (Macro-F1),Holm-adj. p
+Logistic Regression,A: Traditional ML,36.85 ± 1.25,0.345 ± 0.013,39.42 ± 1.34,0.0606,0.3233
+Random Forest,A: Traditional ML,41.75 ± 1.06,0.346 ± 0.009,35.15 ± 1.00,0.0539,0.3233
+HistGradientBoosting,A: Traditional ML,38.50 ± 1.12,0.348 ± 0.010,36.89 ± 1.00,0.0446,0.3120
+Static MLP,B: Single-branch deep,31.18 ± 2.30,0.292 ± 0.012,33.88 ± 0.44,0.0013,0.0120
+Standalone LSTM,B: Single-branch deep,32.12 ± 1.27,0.288 ± 0.012,35.37 ± 1.31,0.0151,0.1211
+Hybrid-1 (MLP+CNN+LSTM),C: Hybrid baseline,35.34 ± 2.50,0.329 ± 0.018,37.16 ± 0.95,0.8096,1.0000
+Hybrid-2 (MLP+BiLSTM),C: Hybrid baseline,35.80 ± 0.94,0.331 ± 0.009,37.34 ± 0.67,0.8231,1.0000
+Hybrid-3 (MLP+GRU),C: Hybrid baseline,35.58 ± 2.14,0.329 ± 0.018,36.84 ± 1.38,0.8035,1.0000
+Hybrid-4 (MLP+Transformer),C: Hybrid baseline,34.75 ± 2.33,0.323 ± 0.019,36.76 ± 0.84,0.1321,0.5285
+Proposed (MLP+CausalTCN+LSTM),D: Proposed,35.71 ± 1.70,0.330 ± 0.012,37.02 ± 0.35,-,-
+Majority class (reference),reference,43.57 ± 0.02,0.152 ± 0.000,25.00 ± 0.00,-,-

@@ -1,0 +1,26 @@
+OBJECTIVE 1 PART 2 - TRACK HEAD & TUNING
+======================================================================
+N=12411 | trials/model=8 | nested inner hold-out 80/20 | saber_pro_features=False
+majority floors: track 43.6%, programme 42.8%
+
+## TRACK TASK
+[default] best Macro-F1: HistGradientBoosting 0.348 | best accuracy: Random Forest 41.7% | proposed: F1 0.330, acc 35.7% | majority acc 43.6%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['HistGradientBoosting']
+[tuned_macro_f1] best Macro-F1: Logistic Regression 0.350 | best accuracy: Hybrid-1 (MLP+CNN+LSTM) 42.0% | proposed: F1 0.335, acc 39.3% | majority acc 43.6%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['Logistic Regression']
+[tuned_accuracy] best Macro-F1: HistGradientBoosting 0.330 | best accuracy: Logistic Regression 45.7% | proposed: F1 0.306, acc 43.6% | majority acc 43.6%
+    significantly (p<0.05, uncorrected) better than: ['Standalone LSTM']; significantly worse than: none
+    tuning gain for Proposed (Macro-F1): 0.330 -> 0.335
+    80% track-accuracy target: best observed 45.7% -> NOT MET
+
+## PROGRAM TASK
+[default] best Macro-F1: HistGradientBoosting 0.069 | best accuracy: HistGradientBoosting 31.0% | proposed: F1 0.052, acc 11.5%, top3 42.0% | majority acc 42.8%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[tuned_macro_f1] best Macro-F1: Hybrid-3 (MLP+GRU) 0.081 | best accuracy: Logistic Regression 38.0% | proposed: F1 0.078, acc 37.0%, top3 76.5% | majority acc 42.8%
+    significantly (p<0.05, uncorrected) better than: ['Standalone LSTM']; significantly worse than: none
+[tuned_top3] best Macro-F1: Proposed (MLP+CausalTCN+LSTM) 0.062 | best accuracy: Hybrid-3 (MLP+GRU) 43.6% | proposed: F1 0.062, acc 41.8%, top3 80.4% | majority acc 42.8%
+    significantly (p<0.05, uncorrected) better than: ['Random Forest', 'Static MLP', 'Standalone LSTM']; significantly worse than: none
+    tuning gain for Proposed (Macro-F1): 0.052 -> 0.078
+    85% Top-3 target: best observed 82.1% -> NOT MET
+
+Selection used ONLY the inner 20% hold-out of each outer-training set; outer folds were evaluated once. Paired t-tests use 5 folds (4 d.o.f.) and have low power.
