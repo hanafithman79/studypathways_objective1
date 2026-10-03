@@ -1,0 +1,16 @@
+\begin{tabular}{llllllll}
+\toprule
+Model & Category & Macro-Track Top-1 (\%) & Programme Top-1 (\%) & Programme Top-3 (\%) & Programme Macro-F1 & p-value vs Proposed (Macro-F1) & Holm-adj. p \\
+\midrule
+Logistic Regression & A: Traditional ML & 29.05 ± 1.14 & 9.35 ± 0.58 & 39.45 ± 1.39 & 0.047 ± 0.003 & 0.2216 & 1.0000 \\
+Random Forest & A: Traditional ML & 29.80 ± 0.44 & 29.87 ± 0.96 & 70.10 ± 0.62 & 0.071 ± 0.006 & 0.0037 & 0.0258 \\
+HistGradientBoosting & A: Traditional ML & 36.95 ± 0.73 & 31.15 ± 0.82 & 74.43 ± 0.60 & 0.069 ± 0.005 & 0.0006 & 0.0054 \\
+Static MLP & B: Single-branch deep & 27.49 ± 1.12 & 8.25 ± 1.73 & 39.33 ± 3.55 & 0.039 ± 0.004 & 0.0061 & 0.0366 \\
+Standalone LSTM & B: Single-branch deep & 20.64 ± 0.17 & 4.67 ± 1.47 & 24.29 ± 3.48 & 0.026 ± 0.006 & 0.0017 & 0.0132 \\
+Hybrid-1 (MLP+CNN+LSTM) & C: Hybrid baseline & 28.41 ± 1.21 & 12.46 ± 2.97 & 43.85 ± 3.99 & 0.052 ± 0.010 & 0.7509 & 1.0000 \\
+Hybrid-2 (MLP+BiLSTM) & C: Hybrid baseline & 28.27 ± 1.18 & 12.93 ± 1.58 & 45.04 ± 1.62 & 0.052 ± 0.008 & 0.6450 & 1.0000 \\
+Hybrid-3 (MLP+GRU) & C: Hybrid baseline & 28.47 ± 1.81 & 11.39 ± 1.96 & 43.18 ± 2.66 & 0.051 ± 0.008 & 0.9613 & 1.0000 \\
+Hybrid-4 (MLP+Transformer) & C: Hybrid baseline & 28.12 ± 0.86 & 11.85 ± 1.76 & 41.90 ± 3.31 & 0.050 ± 0.003 & 0.4360 & 1.0000 \\
+Proposed (MLP+CausalTCN+LSTM) & D: Proposed & 28.43 ± 1.84 & 11.55 ± 1.30 & 42.12 ± 1.84 & 0.051 ± 0.004 & - & - \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,24 @@
+OBJECTIVE 1 - AUTOMATIC SUMMARY
+------------------------------------------------------------
+Students: 12411 | Programmes: 21 | Tracks: 4 | folds: 5 | epochs: 15
+Saber-Pro features in temporal branch: False
+Majority-class floor: programme 42.8%, track 43.6%
+
+Best Macro-F1 model: Random Forest (0.071)
+Proposed Macro-F1: 0.051
+
+Proposed vs Logistic Regression            dMacro-F1=+0.004  p=0.2216 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Random Forest                  dMacro-F1=-0.020  p=0.0037 (Holm 0.0258) -> significantly different at 0.05
+Proposed vs HistGradientBoosting           dMacro-F1=-0.018  p=0.0006 (Holm 0.0054) -> significantly different at 0.05
+Proposed vs Static MLP                     dMacro-F1=+0.012  p=0.0061 (Holm 0.0366) -> significantly different at 0.05
+Proposed vs Standalone LSTM                dMacro-F1=+0.025  p=0.0017 (Holm 0.0132) -> significantly different at 0.05
+Proposed vs Hybrid-1 (MLP+CNN+LSTM)        dMacro-F1=-0.001  p=0.7509 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Hybrid-2 (MLP+BiLSTM)          dMacro-F1=-0.001  p=0.6450 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Hybrid-3 (MLP+GRU)             dMacro-F1=+0.000  p=0.9613 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Hybrid-4 (MLP+Transformer)     dMacro-F1=+0.001  p=0.4360 (Holm 1.0000) -> NOT significantly different at 0.05
+
+Target check (best model on each metric):
+  Macro-track Top-1 > 80%: best = HistGradientBoosting 37.0% -> NOT MET; proposed = 28.4%
+  Programme Top-3 > 85%:  best = HistGradientBoosting 74.4% -> NOT MET; proposed = 42.1%
+
+With only 5 folds, paired t-tests have 4 degrees of freedom and low power; report non-significant differences as such.

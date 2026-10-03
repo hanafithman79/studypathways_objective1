@@ -1,0 +1,112 @@
+Device: cpu | epochs=15 | quick_test=False | saber_pro_features=False
+[data] loaded 12411 rows x 44 columns
+[data] 12411 students after filtering | 21 programmes | 4 macro-tracks
+[data] majority-class floors: programme 42.8% | track 43.6%
+MACRO_TRACK
+Industrial & Management          5407
+Civil & Infrastructure           3481
+Mechanical, Electrical & Tech    2522
+Chemical & Process               1001
+
+=== Fold 1/5 | train=9928 val=2483 ===
+  Logistic Regression              track= 28.3%  top1=  9.4%  top3= 39.0%  macroF1=0.048  (9s)
+  Random Forest                    track= 29.9%  top1= 30.6%  top3= 70.0%  macroF1=0.070  (1s)
+  HistGradientBoosting             track= 38.0%  top1= 32.3%  top3= 74.5%  macroF1=0.069  (11s)
+  Static MLP                       track= 28.0%  top1= 10.4%  top3= 42.5%  macroF1=0.045  (5s)
+  Standalone LSTM                  track= 20.6%  top1=  4.3%  top3= 23.9%  macroF1=0.022  (3s)
+  Hybrid-1 (MLP+CNN+LSTM)          track= 27.1%  top1= 14.4%  top3= 47.8%  macroF1=0.064  (7s)
+  Hybrid-2 (MLP+BiLSTM)            track= 27.6%  top1= 14.1%  top3= 47.0%  macroF1=0.051  (6s)
+  Hybrid-3 (MLP+GRU)               track= 27.6%  top1= 12.6%  top3= 46.6%  macroF1=0.048  (5s)
+  Hybrid-4 (MLP+Transformer)       track= 26.8%  top1= 13.4%  top3= 46.0%  macroF1=0.051  (7s)
+  Proposed (MLP+CausalTCN+LSTM)    track= 27.7%  top1= 11.6%  top3= 44.1%  macroF1=0.050  (6s)
+
+=== Fold 2/5 | train=9929 val=2482 ===
+  Logistic Regression              track= 30.1%  top1=  9.5%  top3= 40.5%  macroF1=0.045  (8s)
+  Random Forest                    track= 29.6%  top1= 30.1%  top3= 69.5%  macroF1=0.073  (1s)
+  HistGradientBoosting             track= 36.8%  top1= 31.4%  top3= 74.2%  macroF1=0.076  (12s)
+  Static MLP                       track= 28.8%  top1=  9.6%  top3= 42.5%  macroF1=0.040  (3s)
+  Standalone LSTM                  track= 20.9%  top1=  3.7%  top3= 20.5%  macroF1=0.022  (3s)
+  Hybrid-1 (MLP+CNN+LSTM)          track= 28.8%  top1= 13.9%  top3= 44.5%  macroF1=0.061  (7s)
+  Hybrid-2 (MLP+BiLSTM)            track= 28.9%  top1= 13.9%  top3= 44.7%  macroF1=0.063  (7s)
+  Hybrid-3 (MLP+GRU)               track= 30.0%  top1= 12.1%  top3= 43.1%  macroF1=0.056  (5s)
+  Hybrid-4 (MLP+Transformer)       track= 29.0%  top1= 10.8%  top3= 39.5%  macroF1=0.052  (7s)
+  Proposed (MLP+CausalTCN+LSTM)    track= 31.2%  top1= 13.0%  top3= 43.4%  macroF1=0.058  (6s)
+
+=== Fold 3/5 | train=9929 val=2482 ===
+  Logistic Regression              track= 30.5%  top1=  9.8%  top3= 39.4%  macroF1=0.051  (8s)
+  Random Forest                    track= 29.2%  top1= 30.4%  top3= 70.5%  macroF1=0.079  (1s)
+  HistGradientBoosting             track= 37.0%  top1= 30.4%  top3= 74.1%  macroF1=0.066  (12s)
+  Static MLP                       track= 27.9%  top1=  6.1%  top3= 34.0%  macroF1=0.034  (3s)
+  Standalone LSTM                  track= 20.7%  top1=  3.6%  top3= 23.2%  macroF1=0.023  (3s)
+  Hybrid-1 (MLP+CNN+LSTM)          track= 28.1%  top1=  8.4%  top3= 38.3%  macroF1=0.040  (7s)
+  Hybrid-2 (MLP+BiLSTM)            track= 27.5%  top1= 11.1%  top3= 42.6%  macroF1=0.044  (7s)
+  Hybrid-3 (MLP+GRU)               track= 27.5%  top1=  9.9%  top3= 39.4%  macroF1=0.048  (6s)
+  Hybrid-4 (MLP+Transformer)       track= 28.2%  top1= 10.5%  top3= 39.4%  macroF1=0.050  (7s)
+  Proposed (MLP+CausalTCN+LSTM)    track= 28.5%  top1= 10.8%  top3= 39.6%  macroF1=0.049  (6s)
+
+=== Fold 4/5 | train=9929 val=2482 ===
+  Logistic Regression              track= 28.5%  top1=  9.7%  top3= 40.9%  macroF1=0.046  (6s)
+  Random Forest                    track= 30.0%  top1= 30.0%  top3= 71.0%  macroF1=0.069  (1s)
+  HistGradientBoosting             track= 37.0%  top1= 31.2%  top3= 75.4%  macroF1=0.071  (12s)
+  Static MLP                       track= 26.8%  top1=  7.2%  top3= 39.6%  macroF1=0.036  (3s)
+  Standalone LSTM                  track= 20.5%  top1=  4.5%  top3= 23.8%  macroF1=0.025  (3s)
+  Hybrid-1 (MLP+CNN+LSTM)          track= 30.3%  top1= 10.2%  top3= 41.5%  macroF1=0.051  (6s)
+  Hybrid-2 (MLP+BiLSTM)            track= 30.1%  top1= 11.3%  top3= 45.5%  macroF1=0.045  (7s)
+  Hybrid-3 (MLP+GRU)               track= 30.7%  top1=  8.8%  top3= 42.4%  macroF1=0.041  (5s)
+  Hybrid-4 (MLP+Transformer)       track= 27.8%  top1= 10.5%  top3= 39.6%  macroF1=0.045  (7s)
+  Proposed (MLP+CausalTCN+LSTM)    track= 28.6%  top1=  9.8%  top3= 41.0%  macroF1=0.046  (6s)
+
+=== Fold 5/5 | train=9929 val=2482 ===
+  Logistic Regression              track= 27.9%  top1=  8.3%  top3= 37.4%  macroF1=0.045  (7s)
+  Random Forest                    track= 30.3%  top1= 28.2%  top3= 69.6%  macroF1=0.063  (1s)
+  HistGradientBoosting             track= 35.9%  top1= 30.3%  top3= 73.9%  macroF1=0.065  (11s)
+  Static MLP                       track= 25.9%  top1=  8.0%  top3= 38.0%  macroF1=0.040  (3s)
+  Standalone LSTM                  track= 20.5%  top1=  7.2%  top3= 30.0%  macroF1=0.036  (3s)
+  Hybrid-1 (MLP+CNN+LSTM)          track= 27.8%  top1= 15.3%  top3= 47.1%  macroF1=0.046  (6s)
+  Hybrid-2 (MLP+BiLSTM)            track= 27.3%  top1= 14.2%  top3= 45.4%  macroF1=0.056  (6s)
+  Hybrid-3 (MLP+GRU)               track= 26.5%  top1= 13.5%  top3= 44.5%  macroF1=0.062  (5s)
+  Hybrid-4 (MLP+Transformer)       track= 28.7%  top1= 14.1%  top3= 45.0%  macroF1=0.052  (7s)
+  Proposed (MLP+CausalTCN+LSTM)    track= 26.1%  top1= 12.5%  top3= 42.4%  macroF1=0.052  (6s)
+
+==================================================================================================================================
+OBJECTIVE 1 - RESULTS (5-fold stratified CV, mean ± std)
+==================================================================================================================================
+                        Model              Category Macro-Track Top-1 (%) Programme Top-1 (%) Programme Top-3 (%) Programme Macro-F1 p-value vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML          29.05 ± 1.14         9.35 ± 0.58        39.45 ± 1.39      0.047 ± 0.003                         0.2216      1.0000
+                Random Forest     A: Traditional ML          29.80 ± 0.44        29.87 ± 0.96        70.10 ± 0.62      0.071 ± 0.006                         0.0037      0.0258
+         HistGradientBoosting     A: Traditional ML          36.95 ± 0.73        31.15 ± 0.82        74.43 ± 0.60      0.069 ± 0.005                         0.0006      0.0054
+                   Static MLP B: Single-branch deep          27.49 ± 1.12         8.25 ± 1.73        39.33 ± 3.55      0.039 ± 0.004                         0.0061      0.0366
+              Standalone LSTM B: Single-branch deep          20.64 ± 0.17         4.67 ± 1.47        24.29 ± 3.48      0.026 ± 0.006                         0.0017      0.0132
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline          28.41 ± 1.21        12.46 ± 2.97        43.85 ± 3.99      0.052 ± 0.010                         0.7509      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline          28.27 ± 1.18        12.93 ± 1.58        45.04 ± 1.62      0.052 ± 0.008                         0.6450      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline          28.47 ± 1.81        11.39 ± 1.96        43.18 ± 2.66      0.051 ± 0.008                         0.9613      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline          28.12 ± 0.86        11.85 ± 1.76        41.90 ± 3.31      0.050 ± 0.003                         0.4360      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed          28.43 ± 1.84        11.55 ± 1.30        42.12 ± 1.84      0.051 ± 0.004                              -           -
+
+OBJECTIVE 1 - AUTOMATIC SUMMARY
+------------------------------------------------------------
+Students: 12411 | Programmes: 21 | Tracks: 4 | folds: 5 | epochs: 15
+Saber-Pro features in temporal branch: False
+Majority-class floor: programme 42.8%, track 43.6%
+
+Best Macro-F1 model: Random Forest (0.071)
+Proposed Macro-F1: 0.051
+
+Proposed vs Logistic Regression            dMacro-F1=+0.004  p=0.2216 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Random Forest                  dMacro-F1=-0.020  p=0.0037 (Holm 0.0258) -> significantly different at 0.05
+Proposed vs HistGradientBoosting           dMacro-F1=-0.018  p=0.0006 (Holm 0.0054) -> significantly different at 0.05
+Proposed vs Static MLP                     dMacro-F1=+0.012  p=0.0061 (Holm 0.0366) -> significantly different at 0.05
+Proposed vs Standalone LSTM                dMacro-F1=+0.025  p=0.0017 (Holm 0.0132) -> significantly different at 0.05
+Proposed vs Hybrid-1 (MLP+CNN+LSTM)        dMacro-F1=-0.001  p=0.7509 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Hybrid-2 (MLP+BiLSTM)          dMacro-F1=-0.001  p=0.6450 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Hybrid-3 (MLP+GRU)             dMacro-F1=+0.000  p=0.9613 (Holm 1.0000) -> NOT significantly different at 0.05
+Proposed vs Hybrid-4 (MLP+Transformer)     dMacro-F1=+0.001  p=0.4360 (Holm 1.0000) -> NOT significantly different at 0.05
+
+Target check (best model on each metric):
+  Macro-track Top-1 > 80%: best = HistGradientBoosting 37.0% -> NOT MET; proposed = 28.4%
+  Programme Top-3 > 85%:  best = HistGradientBoosting 74.4% -> NOT MET; proposed = 42.1%
+
+With only 5 folds, paired t-tests have 4 degrees of freedom and low power; report non-significant differences as such.
+
+All outputs saved in ./objective1_outputs_leakage_safe/ and ./objective1_rigorous_results_leakage_safe.csv  (total 5.3 min)
+EXIT=0

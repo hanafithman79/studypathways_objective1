@@ -64,8 +64,8 @@ QUICK_TEST = os.environ.get("QUICK_TEST", "0") == "1"   # tiny run to smoke-test
 
 DATA_PATH = "dataset.csv"
 DATA_URL = "https://raw.githubusercontent.com/hanafithman79/dataset/main/dataset.csv"
-OUT_DIR = "objective1_outputs"
-RESULTS_CSV = "objective1_rigorous_results.csv"
+OUT_DIR = os.environ.get("OUT_DIR", "objective1_outputs")
+RESULTS_CSV = os.environ.get("RESULTS_CSV", "objective1_rigorous_results.csv")
 
 SEED = 42
 N_SPLITS = 5
