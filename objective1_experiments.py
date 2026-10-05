@@ -131,6 +131,17 @@ STATIC_COLS = ["GENDER", "STRATUM", "SISBEN", "SCHOOL_TYPE", "SCHOOL_NAT", "EDU_
                "EDU_MOTHER", "OCC_FATHER", "OCC_MOTHER", "REVENUE", "PEOPLE_HOUSE",
                "INTERNET", "COMPUTER", "CAR"]
 
+# FEATURE_SET: "spec" (default, the original 14 static variables) | "extended" (+ extra household
+# assets / job + school name, target-encoded) | "extended_univ" (extended + UNIVERSITY, which is
+# chosen together with the programme -> NOT a pre-decision predictor; use only as a labelled experiment)
+FEATURE_SET = os.environ.get("FEATURE_SET", "spec")
+TE_COLS = []                      # high-cardinality columns -> fold-wise target encoding
+if FEATURE_SET in ("extended", "extended_univ"):
+    STATIC_COLS = STATIC_COLS + ["TV", "WASHING_MCH", "MIC_OVEN", "DVD", "FRESH", "PHONE", "MOBILE", "JOB"]
+    TE_COLS = ["SCHOOL_NAME"]
+if FEATURE_SET == "extended_univ":
+    TE_COLS = TE_COLS + ["UNIVERSITY"]
+
 # The 12 temporal variables are arranged as a 3-step trajectory (4 features/step):
 #   step 1: Saber-11 subject scores        step 2: Saber-11 English + STEM/HUM profile
 #   step 3: aggregate standing (global score, percentile, decile, quartile)
@@ -197,6 +208,8 @@ def prepare_data():
     for c in STATIC_COLS:                       # categorical gaps -> explicit level
         if not pd.api.types.is_numeric_dtype(df[c]):
             df[c] = df[c].fillna("Missing")
+    for c in TE_COLS:
+        df[c] = df[c].fillna("Missing")
     for c in TEMPORAL_COLS:                     # numeric gaps (none expected) -> column median
         df[c] = df[c].fillna(df[c].median())
 
@@ -219,7 +232,7 @@ def make_onehot():
         return OneHotEncoder(handle_unknown="ignore", sparse=False)
 
 
-def preprocess_fold(df_tr, df_va):
+def preprocess_fold(df_tr, df_va, y_tr=None):
     """Returns dict with flat / static / sequence arrays for train and validation."""
     cat_cols = [c for c in STATIC_COLS if not pd.api.types.is_numeric_dtype(df_tr[c])]
     num_cols = [c for c in STATIC_COLS if pd.api.types.is_numeric_dtype(df_tr[c])]
@@ -231,6 +244,12 @@ def preprocess_fold(df_tr, df_va):
     static_ct = ColumnTransformer(parts)
     xs_tr = static_ct.fit_transform(df_tr[STATIC_COLS]).astype(np.float32)
     xs_va = static_ct.transform(df_va[STATIC_COLS]).astype(np.float32)
+    if TE_COLS and y_tr is not None:            # leakage-safe: encoder fitted on the training part only
+        from sklearn.preprocessing import TargetEncoder
+        te = TargetEncoder(target_type="multiclass", random_state=0)
+        te_tr = te.fit_transform(df_tr[TE_COLS], y_tr).astype(np.float32)
+        te_va = te.transform(df_va[TE_COLS]).astype(np.float32)
+        xs_tr, xs_va = np.hstack([xs_tr, te_tr]), np.hstack([xs_va, te_va])
 
     sc = StandardScaler()
     xt_tr = sc.fit_transform(df_tr[TEMPORAL_COLS]).astype(np.float32)

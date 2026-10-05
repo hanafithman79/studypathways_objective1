@@ -2,3 +2,5 @@ dataset.csv
 objective1_outputs_tuning/cache/
 __pycache__/
 objective1_outputs_ablation/cache/
+objective1_outputs_program_preuni/cache/
+objective1_outputs_program_univ/cache/

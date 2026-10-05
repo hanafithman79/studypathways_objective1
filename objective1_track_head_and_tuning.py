@@ -71,6 +71,7 @@ SEED = base.SEED
 N_TRIALS = int(os.environ.get("N_TRIALS", 3 if QUICK else 8))
 N_JOBS = int(os.environ.get("N_JOBS", os.cpu_count() or 2))
 RESUME = os.environ.get("RESUME", "1") == "1"
+TASKS = os.environ.get("TASKS", "program,track").split(",")
 OUT = base.OUT_DIR
 CACHE_DIR = os.path.join(OUT, "cache")
 os.makedirs(CACHE_DIR, exist_ok=True)
@@ -78,7 +79,7 @@ DEVICE = torch.device("cpu")          # tiny networks: process-level CPU paralle
 
 KEYS, NAMES, CATEGORY = base.KEYS, base.NAMES, base.CATEGORY
 DEEP_KEYS, PROPOSED = base.DEEP_KEYS, base.PROPOSED
-SEL2 = {"track": "accuracy", "program": "top3"}      # 2nd selection criterion per task
+SEL2 = {"track": "accuracy", "program": os.environ.get("PROGRAM_SEL2", "top3")}      # 2nd selection criterion per task
 COST = {"hgb": 5, "rf": 4, "logreg": 1}               # rough cost, used only to order the job queue
 
 
@@ -276,7 +277,7 @@ def run_task(task, key, fold, tr, va, df, y, y_track, K, prog_track_idx):
 
     # ---- inner hold-out search (outer-validation data never touched) --------
     in_tr, in_va = train_test_split(tr, test_size=0.2, stratify=y_track[tr], random_state=SEED + fold)
-    d_in = base.preprocess_fold(df.iloc[in_tr], df.iloc[in_va])
+    d_in = base.preprocess_fold(df.iloc[in_tr], df.iloc[in_va], y[in_tr])
     trials = []
     for t, cfg in enumerate(cfgs):
         proba = fit_predict(key, cfg, d_in, y[in_tr], K, SEED + fold)
@@ -285,7 +286,7 @@ def run_task(task, key, fold, tr, va, df, y, y_track, K, prog_track_idx):
                            **{f"inner_{k}": v for k, v in m.items()}))
 
     # ---- choose configs, refit on the full outer-training part, evaluate once ----
-    d_out = base.preprocess_fold(df.iloc[tr], df.iloc[va])
+    d_out = base.preprocess_fold(df.iloc[tr], df.iloc[va], y[tr])
     chosen = {"default": 0}
     for sel in ("macro_f1", SEL2[task]):
         best = max(trials, key=lambda t: (t[f"inner_{sel}"], -t["trial"]))
@@ -511,7 +512,7 @@ def main():
           f"programme majority floor {100 * np.bincount(y_prog).max() / N:.1f}%")
 
     jobs = []
-    for task, yy, KK in (("program", y_prog, K), ("track", y_track, 4)):
+    for task, yy, KK in [t for t in (("program", y_prog, K), ("track", y_track, 4)) if t[0] in TASKS]:
         for fold, (tr, va) in enumerate(folds):
             for key in KEYS:
                 jobs.append((COST.get(key, 2) * (2 if task == "program" else 1), task, key, fold, tr, va, yy, KK))
@@ -548,7 +549,7 @@ def main():
                            f"majority floors: track {100 * np.bincount(y_track).max() / N:.1f}%, "
                            f"programme {100 * np.bincount(y_prog).max() / N:.1f}%", ""]
     big = []
-    for task, yy, KK in (("track", y_track, 4), ("program", y_prog, K)):
+    for task, yy, KK in [t for t in (("track", y_track, 4), ("program", y_prog, K)) if t[0] in TASKS]:
         modes = ["default", "tuned_macro_f1", f"tuned_{SEL2[task]}"]
         tr_folds = [(tr, va) for tr, va in folds]
         for mode in modes:
@@ -579,17 +580,26 @@ def main():
     except Exception:
         pass
 
-    # headline confusion matrices for the proposed model (track head)
-    for mode in ("tuned_macro_f1", "tuned_accuracy"):
-        p = oof[("track", mode, PROPOSED)].argmax(1)
-        base.plot_confusion(y_track, p, base.TRACK_NAMES, base.TRACK_NAMES,
-                            f"Proposed - 4-class track head ({mode}), pooled OOF",
-                            f"fig_t07_proposed_track_confusion_{mode}.png", figsize=(7.5, 6.5), fontsize=7)
+    # headline confusion matrices for the proposed model
+    if "track" in TASKS:
+        for mode in ("tuned_macro_f1", "tuned_accuracy"):
+            p = oof[("track", mode, PROPOSED)].argmax(1)
+            base.plot_confusion(y_track, p, base.TRACK_NAMES, base.TRACK_NAMES,
+                                f"Proposed - 4-class track head ({mode}), pooled OOF",
+                                f"fig_t07_proposed_track_confusion_{mode}.png", figsize=(7.5, 6.5), fontsize=7)
+    if "program" in TASKS:
+        short_prog = [base.short(q, 34) for q in programs]
+        for mode in ("tuned_macro_f1", f"tuned_{SEL2['program']}"):
+            for k in (PROPOSED, "rf", "logreg"):
+                base.plot_confusion(y_prog, oof[("program", mode, k)].argmax(1), programs, short_prog,
+                                    f"{NAMES[k]} - 21-programme confusion ({mode}, pooled OOF; cell = count)",
+                                    f"fig_t08_program_confusion_{mode}_{k}.png", figsize=(14, 12), fontsize=5,
+                                    number_ticks=True)
     np.savez_compressed(os.path.join(OUT, "oof_probabilities_tuning.npz"),
                         **{"|".join(k): v for k, v in oof.items()}, y_track=y_track, y_program=y_prog)
 
     # ---------------------------------------------------------------- narrative report
-    for task in ("track", "program"):
+    for task in [t for t in ("track", "program") if t in TASKS]:
         report.append(f"## {task.upper()} TASK")
         for mode in ["default", "tuned_macro_f1", f"tuned_{SEL2[task]}"]:
             means, stds, pv, _ = summary[(task, mode)]
@@ -614,7 +624,7 @@ def main():
                           f"{'MET' if best_acc > 80 else 'NOT MET'}")
         else:
             best_t3 = max(summary[("program", m)][0].loc[KEYS, "top3"].max()
-                          for m in ["default", "tuned_macro_f1", "tuned_top3"])
+                          for m in ["default", "tuned_macro_f1", f"tuned_{SEL2['program']}"])
             report.append(f"    85% Top-3 target: best observed {best_t3:.1f}% -> "
                           f"{'MET' if best_t3 > 85 else 'NOT MET'}")
         report.append("")
