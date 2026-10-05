@@ -1,0 +1,17 @@
+OBJECTIVE 1 PART 3 - ABLATION STUDY
+======================================================================
+folds=5 seeds=3 epochs=15 | identical hyper-parameters | saber_pro_features=False | temporal steps T=2
+
+## PROGRAM TASK  (full model Macro-F1 0.053)
+Components whose removal significantly LOWERS Macro-F1 (p<0.05 uncorrected): ['- static branch', '- temporal branch', '- BatchNorm', '- family features (EDU/OCC)', '- household/economic features', '- school & gender features']
+... after Holm correction: ['- static branch', '- temporal branch', '- family features (EDU/OCC)', '- household/economic features', '- school & gender features']
+Removals that significantly RAISE Macro-F1 (component not helping): ['- Dropout', '- fusion MLP (linear head)']
+Largest drop: - static branch (-0.0338); largest gain: - Dropout (+0.0088)
+
+## TRACK TASK  (full model Macro-F1 0.328)
+Components whose removal significantly LOWERS Macro-F1 (p<0.05 uncorrected): ['- static branch', '- temporal branch', '- class-weighted loss', '- school & gender features']
+... after Holm correction: ['- temporal branch']
+Removals that significantly RAISE Macro-F1 (component not helping): none
+Largest drop: - static branch (-0.0527); largest gain: - causal TCN (MLP+LSTM) (+0.0042)
+
+Interpretation guide: delta = variant - full; paired t-tests use 5 folds (4 d.o.f.) so power is low; a non-significant delta means 'no evidence this component matters', not 'proven useless'. With T=2 sequence steps the temporal branch sees only a very short pseudo-trajectory.

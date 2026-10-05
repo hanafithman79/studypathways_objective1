@@ -1,0 +1,69 @@
+[ablation] variants=16 seeds=[42, 43, 44] epochs=15 jobs=4 saber_pro_features=False temporal_steps=2
+[data] loaded 12411 rows x 44 columns
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:   55.5s
+[Parallel(n_jobs=4)]: Done  64 tasks      | elapsed:  5.1min
+[Parallel(n_jobs=4)]: Done 160 out of 160 | elapsed: 12.6min finished
+
+==================================================================================================================================
+ABLATION - PROGRAM TASK
+==================================================================================================================================
+                       Variant         Type      Macro-F1 Top-1 acc (%) Top-3 acc (%) Δ Macro-F1 vs full [95% CI] p (paired t) Holm p
+         Full model (Proposed)    reference 0.053 ± 0.002  12.20 ± 0.62  43.63 ± 2.21                           -            -      -
+               - static branch architecture 0.019 ± 0.003   2.91 ± 0.80  22.22 ± 2.78  -0.0338 [-0.0375, -0.0302]       0.0000 0.0002
+             - temporal branch architecture 0.041 ± 0.003   7.92 ± 1.02  38.81 ± 2.03  -0.0121 [-0.0152, -0.0089]       0.0004 0.0061
+       - causal TCN (MLP+LSTM) architecture 0.053 ± 0.005  12.30 ± 1.23  44.07 ± 2.53  +0.0004 [-0.0051, +0.0058]       0.8540 1.0000
+              - LSTM (MLP+TCN) architecture 0.053 ± 0.004  12.50 ± 0.86  43.97 ± 1.60  +0.0001 [-0.0050, +0.0052]       0.9532 1.0000
+     - TCN residual connection architecture 0.052 ± 0.003  12.16 ± 1.09  42.85 ± 2.73  -0.0004 [-0.0042, +0.0035]       0.7978 1.0000
+  - causality (symmetric conv) architecture 0.053 ± 0.005  12.37 ± 1.48  43.30 ± 3.15  +0.0002 [-0.0044, +0.0047]       0.9266 1.0000
+                   - BatchNorm architecture 0.046 ± 0.005   9.66 ± 0.81  35.23 ± 2.77  -0.0063 [-0.0109, -0.0018]       0.0181 0.1558
+                     - Dropout architecture 0.062 ± 0.006  17.11 ± 1.38  52.83 ± 2.40  +0.0088 [+0.0025, +0.0150]       0.0173 0.1558
+    - fusion MLP (linear head) architecture 0.060 ± 0.005  14.41 ± 1.57  47.03 ± 2.45  +0.0068 [+0.0030, +0.0106]       0.0074 0.0738
+         - class-weighted loss     training 0.052 ± 0.003  42.82 ± 0.58  81.35 ± 0.79  -0.0010 [-0.0038, +0.0018]       0.3633 1.0000
+   - family features (EDU/OCC)     features 0.043 ± 0.004   8.97 ± 0.56  34.80 ± 1.68  -0.0094 [-0.0131, -0.0058]       0.0020 0.0222
+ - household/economic features     features 0.041 ± 0.004   9.26 ± 1.34  36.23 ± 2.37  -0.0114 [-0.0149, -0.0078]       0.0009 0.0114
+    - school & gender features     features 0.041 ± 0.004   8.71 ± 1.16  39.28 ± 2.24  -0.0117 [-0.0154, -0.0080]       0.0009 0.0114
+- engineered STEM/HUM features     features 0.052 ± 0.002  12.44 ± 0.65  43.72 ± 2.38  -0.0007 [-0.0027, +0.0013]       0.4063 1.0000
+     - English score (ENG_S11)     features 0.051 ± 0.003  12.00 ± 0.79  42.89 ± 2.68  -0.0013 [-0.0030, +0.0004]       0.0929 0.6502
+
+==================================================================================================================================
+ABLATION - TRACK TASK
+==================================================================================================================================
+                       Variant         Type      Macro-F1 Top-1 acc (%) Δ Macro-F1 vs full [95% CI] p (paired t) Holm p
+         Full model (Proposed)    reference 0.328 ± 0.010  35.40 ± 1.66                           -            -      -
+               - static branch architecture 0.276 ± 0.017  30.90 ± 1.76  -0.0527 [-0.0805, -0.0249]       0.0063 0.0813
+             - temporal branch architecture 0.296 ± 0.009  32.10 ± 1.46  -0.0327 [-0.0414, -0.0241]       0.0005 0.0069
+       - causal TCN (MLP+LSTM) architecture 0.332 ± 0.009  35.75 ± 1.44  +0.0042 [-0.0023, +0.0106]       0.1473 1.0000
+              - LSTM (MLP+TCN) architecture 0.331 ± 0.008  35.59 ± 1.21  +0.0027 [-0.0054, +0.0108]       0.4084 1.0000
+     - TCN residual connection architecture 0.330 ± 0.008  35.63 ± 1.22  +0.0014 [-0.0029, +0.0058]       0.4060 1.0000
+  - causality (symmetric conv) architecture 0.331 ± 0.008  35.89 ± 1.05  +0.0028 [-0.0048, +0.0104]       0.3638 1.0000
+                   - BatchNorm architecture 0.332 ± 0.013  36.03 ± 1.49  +0.0038 [-0.0061, +0.0138]       0.3435 1.0000
+                     - Dropout architecture 0.318 ± 0.003  35.54 ± 0.53  -0.0105 [-0.0258, +0.0047]       0.1267 1.0000
+    - fusion MLP (linear head) architecture 0.332 ± 0.005  35.69 ± 1.10  +0.0039 [-0.0023, +0.0101]       0.1562 1.0000
+         - class-weighted loss     training 0.310 ± 0.009  43.42 ± 0.25  -0.0180 [-0.0338, -0.0021]       0.0345 0.4143
+   - family features (EDU/OCC)     features 0.323 ± 0.008  34.26 ± 1.14  -0.0056 [-0.0139, +0.0027]       0.1325 1.0000
+ - household/economic features     features 0.320 ± 0.012  33.81 ± 1.13  -0.0078 [-0.0217, +0.0061]       0.1923 1.0000
+    - school & gender features     features 0.300 ± 0.007  32.79 ± 1.09  -0.0278 [-0.0409, -0.0147]       0.0041 0.0580
+- engineered STEM/HUM features     features 0.330 ± 0.010  35.67 ± 1.78  +0.0020 [-0.0013, +0.0053]       0.1642 1.0000
+     - English score (ENG_S11)     features 0.326 ± 0.010  35.44 ± 1.56  -0.0024 [-0.0076, +0.0028]       0.2665 1.0000
+
+OBJECTIVE 1 PART 3 - ABLATION STUDY
+======================================================================
+folds=5 seeds=3 epochs=15 | identical hyper-parameters | saber_pro_features=False | temporal steps T=2
+
+## PROGRAM TASK  (full model Macro-F1 0.053)
+Components whose removal significantly LOWERS Macro-F1 (p<0.05 uncorrected): ['- static branch', '- temporal branch', '- BatchNorm', '- family features (EDU/OCC)', '- household/economic features', '- school & gender features']
+... after Holm correction: ['- static branch', '- temporal branch', '- family features (EDU/OCC)', '- household/economic features', '- school & gender features']
+Removals that significantly RAISE Macro-F1 (component not helping): ['- Dropout', '- fusion MLP (linear head)']
+Largest drop: - static branch (-0.0338); largest gain: - Dropout (+0.0088)
+
+## TRACK TASK  (full model Macro-F1 0.328)
+Components whose removal significantly LOWERS Macro-F1 (p<0.05 uncorrected): ['- static branch', '- temporal branch', '- class-weighted loss', '- school & gender features']
+... after Holm correction: ['- temporal branch']
+Removals that significantly RAISE Macro-F1 (component not helping): none
+Largest drop: - static branch (-0.0527); largest gain: - causal TCN (MLP+LSTM) (+0.0042)
+
+Interpretation guide: delta = variant - full; paired t-tests use 5 folds (4 d.o.f.) so power is low; a non-significant delta means 'no evidence this component matters', not 'proven useless'. With T=2 sequence steps the temporal branch sees only a very short pseudo-trajectory.
+
+All outputs in ./objective1_outputs_ablation/ (total 12.7 min)
+EXIT=0
