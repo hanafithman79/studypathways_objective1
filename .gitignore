@@ -4,3 +4,5 @@ __pycache__/
 objective1_outputs_ablation/cache/
 objective1_outputs_program_preuni/cache/
 objective1_outputs_program_univ/cache/
+objective1_outputs_top3_preuni/cache/
+objective1_outputs_top3_univ/cache/

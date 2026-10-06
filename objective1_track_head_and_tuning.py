@@ -318,7 +318,10 @@ def aggregate(results, task, mode, y, tr_folds, K):
     for f, (tr, va) in enumerate(tr_folds):
         maj = np.bincount(y[tr], minlength=K).argmax()
         pred = np.full(len(va), maj)
-        ref.append(dict(model="majority", fold=f + 1, accuracy=100 * accuracy_score(y[va], pred),
+        freq = np.bincount(y[tr], minlength=K) / len(tr)       # "recommend the most common classes" reference
+        top3_ref = (100 * top_k_accuracy_score(y[va], np.tile(freq, (len(va), 1)), k=3, labels=np.arange(K))
+                    if K > 4 else np.nan)
+        ref.append(dict(model="majority", fold=f + 1, top3=top3_ref, accuracy=100 * accuracy_score(y[va], pred),
                         macro_f1=f1_score(y[va], pred, average="macro", zero_division=0),
                         bal_acc=100 * balanced_accuracy_score(y[va], pred)))
     fold_df = pd.concat([fold_df, pd.DataFrame(ref)], ignore_index=True)
