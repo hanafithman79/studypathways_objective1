@@ -1,0 +1,76 @@
+[tuning] trials/model=8 jobs=4 quick=False resume=True saber_pro_features=False
+[data] loaded 12411 rows x 44 columns
+[subset] keeping 6 programmes with >= 200 students (95.9% of students); dropped: ['AERONAUTICAL ENGINEERING', 'AUTOMATION ENGINEERING', 'CATASTRAL ENGINEERING AND GEODESY', 'CIVIL CONSTRUCTIONS', 'CONTROL ENGINEERING', 'ELECTRIC ENGINEERING AND TELECOMMUNICATIONS', 'ELECTROMECHANICAL ENGINEERING', 'INDUSTRIAL AUTOMATIC ENGINEERING', 'INDUSTRIAL CONTROL AND AUTOMATION ENGINEERING', 'MECHATRONICS ENGINEERING', 'PRODUCTION ENGINEERING', 'PRODUCTIVITY AND QUALITY ENGINEERING', 'TEXTILE ENGINEERING', 'TOPOGRAPHIC ENGINEERY', 'TRANSPORTATION AND ROAD ENGINEERING']
+[data] N=11900  track majority floor 44.7%  programme majority floor 44.7%
+[jobs] 50 (task x model x fold) jobs, each = 8 inner trials + final fits
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:  5.3min
+[Parallel(n_jobs=4)]: Done  50 out of  50 | elapsed: 20.2min finished
+
+========================================================================================================================
+PROGRAM / default
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%) Top-3 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       30.97 ± 1.68       70.47 ± 0.98 0.248 ± 0.014      30.27 ± 1.69                   0.0674      0.3368
+                Random Forest     A: Traditional ML       39.58 ± 0.80       82.26 ± 0.96 0.258 ± 0.007      26.07 ± 0.79                   0.0152      0.1061
+         HistGradientBoosting     A: Traditional ML       37.07 ± 1.40       80.01 ± 0.71 0.260 ± 0.016      27.12 ± 1.75                   0.0494      0.2962
+                   Static MLP B: Single-branch deep       25.07 ± 2.06       72.06 ± 1.76 0.207 ± 0.014      25.75 ± 1.40                   0.0000      0.0004
+              Standalone LSTM B: Single-branch deep       27.66 ± 0.85       61.69 ± 1.75 0.183 ± 0.005      25.59 ± 0.81                   0.0036      0.0288
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       28.57 ± 2.23       75.09 ± 1.87 0.230 ± 0.016      28.29 ± 1.20                   0.7574      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       28.45 ± 1.51       76.04 ± 0.68 0.227 ± 0.015      27.66 ± 1.58                   0.7660      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       29.02 ± 1.77       75.41 ± 1.49 0.229 ± 0.012      27.64 ± 1.14                   0.8317      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       27.45 ± 1.26       74.54 ± 1.43 0.223 ± 0.014      27.44 ± 1.78                   0.2410      0.9640
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       28.30 ± 1.90       75.46 ± 1.33 0.228 ± 0.013      27.95 ± 1.09                        -           -
+   Majority class (reference)             reference       44.69 ± 0.02       82.13 ± 0.02 0.103 ± 0.000      16.67 ± 0.00                        -           -
+
+========================================================================================================================
+PROGRAM / tuned_macro_f1
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%) Top-3 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       35.55 ± 6.96       75.65 ± 6.91 0.252 ± 0.017      28.07 ± 1.90                   0.7543      1.0000
+                Random Forest     A: Traditional ML       40.25 ± 3.12       82.45 ± 2.62 0.264 ± 0.017      26.84 ± 2.44                   0.0267      0.1872
+         HistGradientBoosting     A: Traditional ML       37.66 ± 3.49       79.99 ± 3.30 0.262 ± 0.011      27.45 ± 1.03                   0.0171      0.1367
+                   Static MLP B: Single-branch deep       37.56 ± 6.85       80.67 ± 4.59 0.230 ± 0.016      23.71 ± 0.73                   0.0998      0.4992
+              Standalone LSTM B: Single-branch deep       31.10 ± 6.18       65.92 ± 8.45 0.185 ± 0.009      24.31 ± 2.93                   0.0000      0.0003
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       31.63 ± 5.59       76.91 ± 4.54 0.227 ± 0.009      26.58 ± 2.36                   0.0365      0.2189
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       38.18 ± 1.91       80.92 ± 0.44 0.251 ± 0.019      26.58 ± 2.00                   0.9136      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       36.87 ± 4.10       79.81 ± 4.11 0.247 ± 0.014      26.49 ± 2.57                   0.6113      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       38.43 ± 1.72       81.67 ± 0.54 0.245 ± 0.005      25.24 ± 0.83                   0.4760      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       39.23 ± 2.21       81.70 ± 0.51 0.249 ± 0.009      25.88 ± 1.09                        -           -
+   Majority class (reference)             reference       44.69 ± 0.02       82.13 ± 0.02 0.103 ± 0.000      16.67 ± 0.00                        -           -
+
+========================================================================================================================
+PROGRAM / tuned_accuracy
+========================================================================================================================
+                        Model              Category Top-1 accuracy (%) Top-3 accuracy (%)      Macro-F1 Balanced acc. (%) p vs Proposed (Macro-F1) Holm-adj. p
+          Logistic Regression     A: Traditional ML       46.43 ± 0.57       85.32 ± 0.97 0.189 ± 0.020      20.59 ± 0.92                   0.3130      1.0000
+                Random Forest     A: Traditional ML       46.46 ± 0.75       85.83 ± 0.50 0.164 ± 0.009      19.33 ± 0.29                   0.0219      0.1753
+         HistGradientBoosting     A: Traditional ML       45.16 ± 0.87       84.92 ± 0.98 0.207 ± 0.012      21.39 ± 0.76                   0.5767      1.0000
+                   Static MLP B: Single-branch deep       44.94 ± 2.27       84.45 ± 1.01 0.179 ± 0.031      20.13 ± 1.76                   0.1637      1.0000
+              Standalone LSTM B: Single-branch deep       44.39 ± 0.32       83.35 ± 0.22 0.128 ± 0.008      17.26 ± 0.23                   0.0030      0.0274
+      Hybrid-1 (MLP+CNN+LSTM)    C: Hybrid baseline       45.41 ± 1.24       84.99 ± 0.73 0.195 ± 0.020      20.90 ± 0.99                   0.3537      1.0000
+        Hybrid-2 (MLP+BiLSTM)    C: Hybrid baseline       43.94 ± 3.38       84.17 ± 1.90 0.204 ± 0.029      21.55 ± 1.75                   0.7479      1.0000
+           Hybrid-3 (MLP+GRU)    C: Hybrid baseline       45.92 ± 0.72       85.09 ± 0.47 0.183 ± 0.021      20.31 ± 1.04                   0.1581      1.0000
+   Hybrid-4 (MLP+Transformer)    C: Hybrid baseline       44.76 ± 0.59       84.03 ± 0.82 0.194 ± 0.015      20.82 ± 0.76                   0.2686      1.0000
+Proposed (MLP+CausalTCN+LSTM)           D: Proposed       43.18 ± 1.72       83.28 ± 1.07 0.212 ± 0.025      21.87 ± 2.14                        -           -
+   Majority class (reference)             reference       44.69 ± 0.02       82.13 ± 0.02 0.103 ± 0.000      16.67 ± 0.00                        -           -
+
+OBJECTIVE 1 PART 2 - TRACK HEAD & TUNING
+======================================================================
+N=11900 | trials/model=8 | nested inner hold-out 80/20 | saber_pro_features=False
+majority floors: track 44.7%, programme 44.7%
+
+## PROGRAM TASK
+[default] best Macro-F1: HistGradientBoosting 0.260 | best accuracy: Random Forest 39.6% | proposed: F1 0.228, acc 28.3%, top3 75.5% | majority acc 44.7%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[tuned_macro_f1] best Macro-F1: Random Forest 0.264 | best accuracy: Random Forest 40.3% | proposed: F1 0.249, acc 39.2%, top3 81.7% | majority acc 44.7%
+    significantly (p<0.05, uncorrected) better than: ['Standalone LSTM', 'Hybrid-1 (MLP+CNN+LSTM)']; significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[tuned_accuracy] best Macro-F1: Proposed (MLP+CausalTCN+LSTM) 0.212 | best accuracy: Random Forest 46.5% | proposed: F1 0.212, acc 43.2%, top3 83.3% | majority acc 44.7%
+    significantly (p<0.05, uncorrected) better than: ['Random Forest', 'Standalone LSTM']; significantly worse than: none
+    tuning gain for Proposed (Macro-F1): 0.228 -> 0.249
+    85% Top-3 target: best observed 85.8% -> MET
+
+Selection used ONLY the inner 20% hold-out of each outer-training set; outer folds were evaluated once. Paired t-tests use 5 folds (4 d.o.f.) and have low power.
+
+All outputs in ./objective1_outputs_subset6_preuni/  (total 20.5 min)
+EXIT=0

@@ -1,0 +1,16 @@
+OBJECTIVE 1 PART 2 - TRACK HEAD & TUNING
+======================================================================
+N=11900 | trials/model=8 | nested inner hold-out 80/20 | saber_pro_features=False
+majority floors: track 44.7%, programme 44.7%
+
+## PROGRAM TASK
+[default] best Macro-F1: HistGradientBoosting 0.260 | best accuracy: Random Forest 39.6% | proposed: F1 0.228, acc 28.3%, top3 75.5% | majority acc 44.7%
+    significantly (p<0.05, uncorrected) better than: ['Static MLP', 'Standalone LSTM']; significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[tuned_macro_f1] best Macro-F1: Random Forest 0.264 | best accuracy: Random Forest 40.3% | proposed: F1 0.249, acc 39.2%, top3 81.7% | majority acc 44.7%
+    significantly (p<0.05, uncorrected) better than: ['Standalone LSTM', 'Hybrid-1 (MLP+CNN+LSTM)']; significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[tuned_accuracy] best Macro-F1: Proposed (MLP+CausalTCN+LSTM) 0.212 | best accuracy: Random Forest 46.5% | proposed: F1 0.212, acc 43.2%, top3 83.3% | majority acc 44.7%
+    significantly (p<0.05, uncorrected) better than: ['Random Forest', 'Standalone LSTM']; significantly worse than: none
+    tuning gain for Proposed (Macro-F1): 0.228 -> 0.249
+    85% Top-3 target: best observed 85.8% -> MET
+
+Selection used ONLY the inner 20% hold-out of each outer-training set; outer folds were evaluated once. Paired t-tests use 5 folds (4 d.o.f.) and have low power.
