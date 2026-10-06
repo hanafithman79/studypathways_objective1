@@ -1,0 +1,11 @@
+,trainable_parameters
+Static MLP,27285
+Standalone LSTM,19285
+Hybrid-1 (MLP+CNN+LSTM),61045
+Hybrid-2 (MLP+BiLSTM),45269
+Hybrid-3 (MLP+GRU),48981
+Hybrid-4 (MLP+Transformer),36537
+Proposed (MLP+CausalTCN+LSTM),53497
+Hybrid-5 (MLP+CNN-BiLSTM),52853
+Hybrid-6 (MLP+Attention-LSTM),53526
+Hybrid-7 (MLP+Transformer-LSTM),54137

@@ -1,0 +1,16 @@
+MODEL COMPARISON VERDICTS (computed from the fold-wise results)
+========================================================================
+[Pre-university features | tuned_macro_f1 | Macro-F1] best mean = Proposed (MLP+CausalTCN+LSTM) (0.089); Proposed = 0.089, mean-rank position 1 of 13; Friedman p = 0.037; Holm-significantly better than: none; Holm-significantly worse than: none
+[Pre-university features | tuned_macro_f1 | Top-3 accuracy] best mean = Hybrid-5 (MLP+CNN-BiLSTM) (78.568); Proposed = 76.480, mean-rank position 10 of 13; Friedman p = 0.677; Holm-significantly better than: none; Holm-significantly worse than: none
+[Pre-university features | tuned_macro_f1 | Top-1 accuracy] best mean = Logistic Regression (39.538); Proposed = 36.435, mean-rank position 10 of 13; Friedman p = 0.633; Holm-significantly better than: none; Holm-significantly worse than: none
+[Pre-university features | tuned_top3 | Macro-F1] best mean = Hybrid-6 (MLP+Attention-LSTM) (0.067); Proposed = 0.065, mean-rank position 2 of 13; Friedman p = 0.012; Holm-significantly better than: none; Holm-significantly worse than: none
+[Pre-university features | tuned_top3 | Top-3 accuracy] best mean = Random Forest (82.233); Proposed = 79.405, mean-rank position 12 of 13; Friedman p = 0.003; Holm-significantly better than: none; Holm-significantly worse than: none
+[Pre-university features | tuned_top3 | Top-1 accuracy] best mean = Hybrid-1 (MLP+CNN+LSTM) (44.509); Proposed = 41.229, mean-rank position 13 of 13; Friedman p = 0.017; Holm-significantly better than: none; Holm-significantly worse than: none
+[With university (recommendation) | tuned_macro_f1 | Macro-F1] best mean = Random Forest (0.489); Proposed = 0.435, mean-rank position 5 of 13; Friedman p = 0.000; Holm-significantly better than: ['Standalone LSTM']; Holm-significantly worse than: none
+[With university (recommendation) | tuned_macro_f1 | Top-3 accuracy] best mean = HistGradientBoosting (92.015); Proposed = 86.714, mean-rank position 6 of 13; Friedman p = 0.003; Holm-significantly better than: none; Holm-significantly worse than: none
+[With university (recommendation) | tuned_macro_f1 | Top-1 accuracy] best mean = HistGradientBoosting (58.529); Proposed = 53.405, mean-rank position 6 of 13; Friedman p = 0.008; Holm-significantly better than: none; Holm-significantly worse than: none
+[With university (recommendation) | tuned_top3 | Macro-F1] best mean = HistGradientBoosting (0.431); Proposed = 0.397, mean-rank position 5 of 13; Friedman p = 0.001; Holm-significantly better than: ['Standalone LSTM']; Holm-significantly worse than: none
+[With university (recommendation) | tuned_top3 | Top-3 accuracy] best mean = Random Forest (92.684); Proposed = 89.525, mean-rank position 12 of 13; Friedman p = 0.000; Holm-significantly better than: ['Standalone LSTM']; Holm-significantly worse than: ['Random Forest', 'HistGradientBoosting']
+[With university (recommendation) | tuned_top3 | Top-1 accuracy] best mean = Random Forest (60.656); Proposed = 56.676, mean-rank position 12 of 13; Friedman p = 0.001; Holm-significantly better than: ['Standalone LSTM']; Holm-significantly worse than: none
+
+Note: 5 folds => Friedman and paired tests have low power; 'tied' means no detectable difference.
