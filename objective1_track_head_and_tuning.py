@@ -133,7 +133,49 @@ def finalize_cfg(key, cfg):
 # =============================================================================
 # 2. MODELS (architectures identical to objective1_experiments.py at default cfg)
 # =============================================================================
+class CNNBiLSTMEncoder(nn.Module):                 # Conv1D(32) -> BiLSTM
+    def __init__(self, f_in, h):
+        super().__init__()
+        self.conv = nn.Conv1d(f_in, 32, kernel_size=3, padding=1)
+        self.rnn = nn.LSTM(32, h // 2, batch_first=True, bidirectional=True)
+
+    def forward(self, x):
+        z = F.relu(self.conv(x.transpose(1, 2))).transpose(1, 2)
+        _, (hh, _) = self.rnn(z)
+        return torch.cat([hh[0], hh[1]], dim=1)
+
+
+class AttentionLSTMEncoder(nn.Module):             # LSTM with additive attention pooling over the steps
+    def __init__(self, f_in, h):
+        super().__init__()
+        self.rnn = nn.LSTM(f_in, h, batch_first=True)
+        self.att = nn.Linear(h, 1)
+
+    def forward(self, x):
+        out, _ = self.rnn(x)                            # (B, T, h)
+        w = torch.softmax(self.att(out), dim=1)         # (B, T, 1)
+        return (w * out).sum(dim=1)
+
+
+class TransformerLSTMEncoder(nn.Module):           # Transformer encoder layer -> LSTM
+    def __init__(self, f_in, h):
+        super().__init__()
+        self.layer = nn.TransformerEncoderLayer(d_model=f_in, nhead=1, dim_feedforward=64, dropout=0.1,
+                                                batch_first=True)
+        self.rnn = nn.LSTM(f_in, h, batch_first=True)
+
+    def forward(self, x):
+        _, (hh, _) = self.rnn(self.layer(x))
+        return hh[-1]
+
+
 def make_temporal(key, f, h):
+    if key == "hyb5":
+        return CNNBiLSTMEncoder(f, h), 2 * (h // 2)
+    if key == "hyb6":
+        return AttentionLSTMEncoder(f, h), h
+    if key == "hyb7":
+        return TransformerLSTMEncoder(f, h), h
     if key == "lstm":
         return base.LSTMEncoder(f, h), h
     if key == "hyb1":

@@ -425,6 +425,17 @@ KEYS = [k for k, _, _ in MODEL_SPECS]
 NAMES = {k: n for k, n, _ in MODEL_SPECS}
 CATEGORY = {k: c for k, _, c in MODEL_SPECS}
 DEEP_KEYS = ["static_mlp", "lstm", "hyb1", "hyb2", "hyb3", "hyb4", "proposed"]
+
+# EXTRA_HYBRIDS=1 appends 3 more hybrid baselines (appended last, so the random-search draws of the
+# existing models are unchanged and their cached results stay valid)
+if os.environ.get("EXTRA_HYBRIDS", "0") == "1":
+    for _k, _n in (("hyb5", "Hybrid-5 (MLP+CNN-BiLSTM)"), ("hyb6", "Hybrid-6 (MLP+Attention-LSTM)"),
+                   ("hyb7", "Hybrid-7 (MLP+Transformer-LSTM)")):
+        MODEL_SPECS.append((_k, _n, "C: Hybrid baseline"))
+        KEYS.append(_k)
+        NAMES[_k] = _n
+        CATEGORY[_k] = "C: Hybrid baseline"
+        DEEP_KEYS.append(_k)
 PROPOSED = "proposed"
 
 
