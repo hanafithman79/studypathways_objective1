@@ -198,6 +198,14 @@ def prepare_data():
     if unmapped:
         raise ValueError(f"Programmes without a MACRO_TRACK mapping: {unmapped}")
     df["MACRO_TRACK"] = df["ACADEMIC_PROGRAM"].map(PROGRAM_TO_TRACK)
+    # PROGRAM_MIN_COUNT>0: a DIFFERENT, clearly labelled task that keeps only programmes with enough students
+    min_count = int(os.environ.get("PROGRAM_MIN_COUNT", "0"))
+    if min_count > 0:
+        vc = df["ACADEMIC_PROGRAM"].value_counts()
+        keep = vc[vc >= min_count].index
+        print(f"[subset] keeping {len(keep)} programmes with >= {min_count} students "
+              f"({100 * vc[keep].sum() / len(df):.1f}% of students); dropped: {sorted(set(vc.index) - set(keep))}")
+        df = df[df["ACADEMIC_PROGRAM"].isin(keep)].copy()
 
     # feature engineering
     df["STEM_AVG"] = (df["MAT_S11"] + df["BIO_S11"]) / 2.0
