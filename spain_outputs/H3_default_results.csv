@@ -1,0 +1,15 @@
+Model,Category,PR-AUC,ROC-AUC,Macro-F1,Dropout recall,Captured in top 10%,Mean rank PR-AUC,p vs Proposed (PR-AUC),Holm p,p vs Proposed (Macro-F1)
+Logistic Regression,A: Traditional ML,0.479 ± 0.010,0.901 ± 0.006,0.725 ± 0.008,0.602 ± 0.058,0.605 ± 0.012,12.0,0.0000,0.0004,0.0074
+Random Forest,A: Traditional ML,0.533 ± 0.005,0.911 ± 0.006,0.750 ± 0.004,0.555 ± 0.026,0.655 ± 0.010,10.2,0.0128,0.1155,0.0727
+HistGradientBoosting,A: Traditional ML,0.567 ± 0.012,0.916 ± 0.006,0.750 ± 0.006,0.550 ± 0.048,0.644 ± 0.012,1.8,0.0711,0.4313,0.2370
+Static MLP,B: Single-branch deep,0.540 ± 0.012,0.908 ± 0.004,0.743 ± 0.005,0.537 ± 0.044,0.631 ± 0.013,9.8,0.0007,0.0065,0.3506
+Standalone LSTM,B: Single-branch deep,0.143 ± 0.006,0.682 ± 0.007,0.544 ± 0.035,0.261 ± 0.207,0.630 ± 0.017,13.0,0.0000,0.0000,0.0004
+Hybrid-1 (MLP+CNN+LSTM),C: Hybrid baseline,0.550 ± 0.010,0.908 ± 0.006,0.744 ± 0.002,0.530 ± 0.050,0.635 ± 0.010,7.6,0.0451,0.3606,0.5328
+Hybrid-2 (MLP+BiLSTM),C: Hybrid baseline,0.552 ± 0.010,0.908 ± 0.005,0.745 ± 0.004,0.525 ± 0.066,0.641 ± 0.007,6.4,0.4191,0.5853,0.8896
+Hybrid-3 (MLP+GRU),C: Hybrid baseline,0.558 ± 0.008,0.909 ± 0.004,0.746 ± 0.005,0.511 ± 0.067,0.640 ± 0.004,3.2,0.2927,0.5853,0.9065
+Hybrid-4 (MLP+Transformer),C: Hybrid baseline,0.545 ± 0.008,0.906 ± 0.004,0.740 ± 0.006,0.516 ± 0.063,0.627 ± 0.005,8.6,0.0616,0.4313,0.3288
+Proposed (MLP+CausalTCN+LSTM),D: Proposed,0.556 ± 0.012,0.909 ± 0.005,0.745 ± 0.006,0.533 ± 0.056,0.644 ± 0.017,4.4,-,-,-
+Hybrid-5 (MLP+CNN-BiLSTM),C: Hybrid baseline,0.562 ± 0.009,0.911 ± 0.004,0.746 ± 0.008,0.527 ± 0.070,0.642 ± 0.016,1.6,0.0663,0.4313,0.9384
+Hybrid-6 (MLP+Attention-LSTM),C: Hybrid baseline,0.552 ± 0.010,0.908 ± 0.004,0.746 ± 0.002,0.510 ± 0.022,0.635 ± 0.012,6.0,0.1568,0.4704,0.8668
+Hybrid-7 (MLP+Transformer-LSTM),C: Hybrid baseline,0.552 ± 0.011,0.906 ± 0.005,0.739 ± 0.005,0.568 ± 0.053,0.633 ± 0.015,6.4,0.0711,0.4313,0.0028
+Reference (no skill),reference,0.070,0.500,0.482,-,0.100,,,,
