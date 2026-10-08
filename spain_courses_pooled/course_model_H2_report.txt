@@ -1,0 +1,4 @@
+COURSE-LEVEL MODEL H2 after semester 1
+prevalence 0.070; current model PR-AUC 0.405; course branch (set) 0.399
+Contrasts with Holm p<0.05: ['course branch (set) vs current', 'course branch (ordered LSTM) vs current', 'random forest: course features vs none']
+data: {'records': 60924, 'records_with_courses': 60924, 'course_rows': 464739, 'dropped_by_cap': 1843, 'k_max': 24, 'courses_per_record': 7.597925283960344, 'share_records_identical_activity_across_courses': 0.0008227805313504081}

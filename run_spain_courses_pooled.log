@@ -8,3 +8,43 @@
 [courses] {'records': 60924, 'records_with_courses': 60924, 'course_rows': 464739, 'dropped_by_cap': 1843, 'k_max': 24, 'courses_per_record': 7.597925283960344, 'share_records_identical_activity_across_courses': 0.0008227805313504081}
 [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
 [Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:  3.2min
+[courses] 60924 records, 39364 students, dropout 7.05%, variants=13 seeds=[42, 43, 44] epochs=15 jobs=4 min_count=10
+[courses] {'records': 60924, 'records_with_courses': 60924, 'course_rows': 464739, 'dropped_by_cap': 1843, 'k_max': 24, 'courses_per_record': 7.597925283960344, 'share_records_identical_activity_across_courses': 0.0008227805313504081}
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:    4.8s
+[Parallel(n_jobs=4)]: Done  65 out of  65 | elapsed: 30.0min finished
+
+mean share of training course tokens by inferred semester: {'sem_unknown': 0.203, 'sem_S1': 0.36, 'sem_S2': 0.334, 'sem_mixed': 0.103}
+
+                                      label  pr_auc_mean  pr_auc_std  roc_auc_mean  capture_top10_mean
+   Current model (static + monthly totals)       0.4054      0.0118        0.8389              0.4880
+             + course branch (set pooling)       0.3994      0.0112        0.8313              0.4848
+           + course branch (ordered, LSTM)       0.3980      0.0145        0.8275              0.4790
+static + course branch (no monthly totals)       0.4012      0.0091        0.8321              0.4838
+          course branch without course ids       0.4048      0.0144        0.8378              0.4858
+              course branch without grades       0.3989      0.0089        0.8297              0.4789
+     course branch without course activity       0.3987      0.0112        0.8311              0.4835
+      course branch: ids and semester only       0.4010      0.0115        0.8314              0.4856
+   course branch: grades and semester only       0.4037      0.0115        0.8372              0.4842
+     Gradient boosting, no course features       0.4054      0.0133        0.8490              0.4865
+       Gradient boosting + course features       0.4121      0.0139        0.8513              0.4942
+         Random Forest, no course features       0.3362      0.0102        0.8339              0.4843
+           Random Forest + course features       0.3457      0.0089        0.8385              0.4869
+
+                                           contrast  delta_pr_auc   ci_lo   ci_hi  folds_a_better      p  p_holm
+                    course branch (set) vs current       -0.0060 -0.0083 -0.0038               0 0.0018  0.0158
+           course branch (ordered LSTM) vs current       -0.0074 -0.0111 -0.0036               0 0.0054  0.0435
+course branch instead of monthly totals vs current       -0.0042 -0.0098  0.0014               1 0.1034  0.4137
+               which courses only (ids) vs current       -0.0043 -0.0089  0.0002               0 0.0552  0.2762
+                     course grades only vs current       -0.0017 -0.0092  0.0059               2 0.5708  1.0000
+        gradient boosting: course features vs none        0.0067  0.0022  0.0113               5 0.0150  0.1048
+            random forest: course features vs none        0.0095  0.0076  0.0114               5 0.0002  0.0016
+       identity effect: with vs without course ids       -0.0055 -0.0103 -0.0006               0 0.0365  0.2193
+       grade effect: with vs without course grades        0.0005 -0.0033  0.0043               3 0.7304  1.0000
+  activity effect: with vs without course activity        0.0007 -0.0017  0.0031               4 0.4676  1.0000
+
+COURSE-LEVEL MODEL H2 after semester 1
+prevalence 0.070; current model PR-AUC 0.405; course branch (set) 0.399
+Contrasts with Holm p<0.05: ['course branch (set) vs current', 'course branch (ordered LSTM) vs current', 'random forest: course features vs none']
+data: {'records': 60924, 'records_with_courses': 60924, 'course_rows': 464739, 'dropped_by_cap': 1843, 'k_max': 24, 'courses_per_record': 7.597925283960344, 'share_records_identical_activity_across_courses': 0.0008227805313504081}
+done in 30.1 min
