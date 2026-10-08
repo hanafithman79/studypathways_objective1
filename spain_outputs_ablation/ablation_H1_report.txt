@@ -1,0 +1,4 @@
+ABLATION H1 enrolment time: full-model PR-AUC 0.318
+Removal significantly LOWERS PR-AUC (Holm p<0.05): ['- static branch', '- Dropout', '- entry route & admission marks']
+Removal significantly RAISES PR-AUC (Holm p<0.05): none
+Largest drop: - static branch (-0.1936)

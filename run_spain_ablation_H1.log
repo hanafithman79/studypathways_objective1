@@ -1,0 +1,30 @@
+[ablation] horizon=H1 variants=17 seeds=[42, 43, 44] epochs=15 jobs=4
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:  3.4min
+[Parallel(n_jobs=4)]: Done  64 tasks      | elapsed: 19.0min
+[Parallel(n_jobs=4)]: Done  85 out of  85 | elapsed: 25.2min finished
+                                      Variant         Type        PR-AUC       ROC-AUC          Δ PR-AUC [95% CI]      p Holm p
+                        Full model (Proposed)    reference 0.318 ± 0.019 0.806 ± 0.008                          -      -      -
+                              - static branch architecture 0.125 ± 0.002 0.684 ± 0.008 -0.1936 [-0.2170, -0.1703] 0.0000 0.0003
+                            - temporal branch architecture 0.319 ± 0.018 0.806 ± 0.009 +0.0004 [-0.0032, +0.0040] 0.7903 1.0000
+                      - causal TCN (MLP+LSTM) architecture 0.319 ± 0.018 0.806 ± 0.009 +0.0007 [-0.0027, +0.0041] 0.5900 1.0000
+                             - LSTM (MLP+TCN) architecture 0.322 ± 0.020 0.808 ± 0.010 +0.0040 [-0.0008, +0.0088] 0.0820 0.7377
+                    - TCN residual connection architecture 0.320 ± 0.019 0.807 ± 0.008 +0.0017 [-0.0010, +0.0044] 0.1575 1.0000
+                 - causality (symmetric conv) architecture 0.319 ± 0.018 0.807 ± 0.009 +0.0002 [-0.0026, +0.0030] 0.8206 1.0000
+                                  - BatchNorm architecture 0.315 ± 0.019 0.805 ± 0.009 -0.0034 [-0.0059, -0.0009] 0.0187 0.2430
+                                    - Dropout architecture 0.291 ± 0.016 0.779 ± 0.009 -0.0277 [-0.0308, -0.0245] 0.0000 0.0003
+                   - fusion MLP (linear head) architecture 0.318 ± 0.018 0.808 ± 0.009 -0.0006 [-0.0033, +0.0021] 0.5934 1.0000
+                        - class-weighted loss     training 0.319 ± 0.021 0.809 ± 0.010 +0.0010 [-0.0035, +0.0056] 0.5597 1.0000
+- prior-year pass rates (static and sequence)     features 0.310 ± 0.021 0.797 ± 0.010 -0.0080 [-0.0146, -0.0014] 0.0282 0.3388
+                 - credits / semester results     features 0.314 ± 0.020 0.803 ± 0.010 -0.0047 [-0.0106, +0.0011] 0.0878 0.7377
+              - entry route & admission marks     features 0.279 ± 0.023 0.776 ± 0.011 -0.0392 [-0.0485, -0.0298] 0.0003 0.0043
+             - family / campus / displacement     features 0.312 ± 0.017 0.808 ± 0.008 -0.0063 [-0.0123, -0.0003] 0.0438 0.4816
+                                     - degree     features 0.312 ± 0.018 0.810 ± 0.010 -0.0063 [-0.0125, -0.0000] 0.0498 0.4978
+- temporal input (prior-year sequence zeroed)     features 0.318 ± 0.019 0.807 ± 0.009 -0.0003 [-0.0033, +0.0027] 0.8102 1.0000
+
+ABLATION H1 enrolment time: full-model PR-AUC 0.318
+Removal significantly LOWERS PR-AUC (Holm p<0.05): ['- static branch', '- Dropout', '- entry route & admission marks']
+Removal significantly RAISES PR-AUC (Holm p<0.05): none
+Largest drop: - static branch (-0.1936)
+done in 25.4 min
+EXIT=0
