@@ -15,3 +15,4 @@ spain_data/
 *.7z
 spain_outputs_ablation/cache/
 spain_outputs_shuffle/cache/
+spain_entrants_outputs/cache/

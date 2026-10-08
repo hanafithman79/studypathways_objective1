@@ -149,7 +149,18 @@ def load_year(path, Y):
     return sy, seq
 
 
+ENTRANTS_ONLY = os.environ.get("ENTRANTS_ONLY", "0") == "1"   # keep only records in the student's entry year
+
+
 def build_student_year():
+    sy, seq = _build_full()
+    if ENTRANTS_ONLY:                                  # secondary-school leavers in their entry year
+        mask = (sy["years_since_entry"] == 0).values
+        sy, seq = sy[mask].reset_index(drop=True), seq[mask]
+    return sy, seq
+
+
+def _build_full():
     cache = os.path.join(CACHE, "spain_student_year.pkl")
     if os.path.exists(cache):
         with open(cache, "rb") as fh:
@@ -359,7 +370,8 @@ def build_report(results, folds, y_all, sy):
                 row["p vs Proposed (Macro-F1)"] = "-" if k == PROPOSED else f"{p_f1[k]:.4f}"
                 tab.append(row)
             tab.append({"Model": "Reference (no skill)", "Category": "reference", "PR-AUC": f"{prev:.3f}",
-                        "ROC-AUC": "0.500", "Macro-F1": "0.482", "Dropout recall": "-", "Captured in top 10%": "0.100"})
+                        "ROC-AUC": "0.500", "Macro-F1": f"{(1 - prev) / (2 - prev):.3f}", "Dropout recall": "-",
+                        "Captured in top 10%": "0.100"})
             tab = pd.DataFrame(tab)
             tab.to_csv(os.path.join(OUT, f"{h}_{mode}_results.csv"), index=False)
             tables[(h, mode)] = tab
