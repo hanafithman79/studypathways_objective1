@@ -1,15 +1,53 @@
-[spain] horizons=['H3', 'H1'] trials=6 jobs=4 search_frac=0.5 quick=False
+[spain] horizons=['H2', 'H3', 'H1'] trials=6 jobs=4 search_frac=0.5 quick=False
 [spain] 60924 student-year records, 39364 students, dropout 7.05%
   fold 1: train 48740 test 12184 dropout 7.05%
   fold 2: train 48738 test 12186 dropout 7.05%
   fold 3: train 48740 test 12184 dropout 7.04%
   fold 4: train 48739 test 12185 dropout 7.05%
   fold 5: train 48739 test 12185 dropout 7.05%
-[spain] 130 jobs
+[spain] 195 jobs
 [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed: 13.9min
-[Parallel(n_jobs=4)]: Done  64 tasks      | elapsed: 74.3min
-[Parallel(n_jobs=4)]: Done 130 out of 130 | elapsed: 106.0min finished
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:    4.5s
+[Parallel(n_jobs=4)]: Done 152 tasks      | elapsed:    5.3s
+[Parallel(n_jobs=4)]: Done 195 out of 195 | elapsed:    5.7s finished
+
+============================================================================================================================================
+H2 after semester 1 / default
+============================================================================================================================================
+                          Model        PR-AUC       ROC-AUC      Macro-F1 Dropout recall Captured in top 10% Mean rank PR-AUC p vs Proposed (PR-AUC) Holm p p vs Proposed (Macro-F1)
+            Logistic Regression 0.334 ± 0.017 0.835 ± 0.006 0.660 ± 0.008  0.414 ± 0.040       0.453 ± 0.013             11.4                 0.0004 0.0036                   0.0026
+                  Random Forest 0.336 ± 0.010 0.833 ± 0.006 0.670 ± 0.007  0.405 ± 0.041       0.487 ± 0.021             11.6                 0.0000 0.0004                   0.0812
+           HistGradientBoosting 0.405 ± 0.013 0.849 ± 0.006 0.680 ± 0.004  0.398 ± 0.075       0.486 ± 0.011              3.6                 0.5491 1.0000                   0.6429
+                     Static MLP 0.392 ± 0.012 0.837 ± 0.007 0.678 ± 0.006  0.381 ± 0.038       0.482 ± 0.008              7.8                 0.0304 0.2740                   0.8114
+                Standalone LSTM 0.116 ± 0.007 0.643 ± 0.009 0.536 ± 0.005  0.115 ± 0.005       0.599 ± 0.015             13.0                 0.0000 0.0000                   0.0000
+        Hybrid-1 (MLP+CNN+LSTM) 0.396 ± 0.010 0.836 ± 0.008 0.680 ± 0.006  0.379 ± 0.011       0.481 ± 0.014              7.6                 0.0433 0.3460                   0.4481
+          Hybrid-2 (MLP+BiLSTM) 0.400 ± 0.018 0.835 ± 0.009 0.679 ± 0.006  0.346 ± 0.030       0.487 ± 0.011              5.4                 0.5682 1.0000                   0.3910
+             Hybrid-3 (MLP+GRU) 0.404 ± 0.014 0.838 ± 0.010 0.683 ± 0.005  0.358 ± 0.031       0.483 ± 0.015              3.6                 0.5446 1.0000                   0.1373
+     Hybrid-4 (MLP+Transformer) 0.401 ± 0.011 0.836 ± 0.011 0.681 ± 0.007  0.361 ± 0.038       0.482 ± 0.010              5.0                 0.3540 1.0000                   0.3628
+  Proposed (MLP+CausalTCN+LSTM) 0.403 ± 0.009 0.837 ± 0.010 0.678 ± 0.006  0.382 ± 0.036       0.484 ± 0.010              4.4                      -      -                        -
+      Hybrid-5 (MLP+CNN-BiLSTM) 0.402 ± 0.019 0.837 ± 0.010 0.679 ± 0.007  0.352 ± 0.043       0.477 ± 0.010              4.0                 0.8622 1.0000                   0.9390
+  Hybrid-6 (MLP+Attention-LSTM) 0.397 ± 0.012 0.835 ± 0.009 0.681 ± 0.007  0.368 ± 0.028       0.483 ± 0.006              7.0                 0.0891 0.6234                   0.0734
+Hybrid-7 (MLP+Transformer-LSTM) 0.398 ± 0.015 0.835 ± 0.010 0.680 ± 0.007  0.354 ± 0.022       0.481 ± 0.014              6.6                 0.2098 1.0000                   0.4678
+           Reference (no skill)         0.070         0.500         0.482              -               0.100              NaN                    NaN    NaN                      NaN
+
+============================================================================================================================================
+H2 after semester 1 / tuned
+============================================================================================================================================
+                          Model        PR-AUC       ROC-AUC      Macro-F1 Dropout recall Captured in top 10% Mean rank PR-AUC p vs Proposed (PR-AUC) Holm p p vs Proposed (Macro-F1)
+            Logistic Regression 0.345 ± 0.012 0.829 ± 0.008 0.659 ± 0.007  0.353 ± 0.045       0.449 ± 0.019             12.0                 0.0007 0.0072                   0.0084
+                  Random Forest 0.429 ± 0.014 0.850 ± 0.008 0.688 ± 0.006  0.373 ± 0.035       0.500 ± 0.015              1.0                 0.0035 0.0349                   0.0352
+           HistGradientBoosting 0.417 ± 0.010 0.848 ± 0.005 0.687 ± 0.004  0.384 ± 0.006       0.498 ± 0.011              2.4                 0.0130 0.1169                   0.0510
+                     Static MLP 0.404 ± 0.011 0.844 ± 0.006 0.678 ± 0.004  0.375 ± 0.042       0.483 ± 0.008              6.4                 0.5497 1.0000                   0.6081
+                Standalone LSTM 0.116 ± 0.007 0.643 ± 0.010 0.537 ± 0.005  0.116 ± 0.005       0.600 ± 0.017             13.0                 0.0000 0.0000                   0.0000
+        Hybrid-1 (MLP+CNN+LSTM) 0.404 ± 0.020 0.842 ± 0.007 0.680 ± 0.003  0.341 ± 0.028       0.485 ± 0.007              5.4                 0.7852 1.0000                   0.2093
+          Hybrid-2 (MLP+BiLSTM) 0.402 ± 0.024 0.842 ± 0.014 0.680 ± 0.011  0.378 ± 0.045       0.484 ± 0.014              7.4                 0.8899 1.0000                   0.5355
+             Hybrid-3 (MLP+GRU) 0.407 ± 0.016 0.844 ± 0.009 0.680 ± 0.011  0.367 ± 0.045       0.490 ± 0.015              6.8                 0.3025 1.0000                   0.5927
+     Hybrid-4 (MLP+Transformer) 0.403 ± 0.019 0.844 ± 0.012 0.683 ± 0.007  0.377 ± 0.029       0.486 ± 0.014              7.6                 0.8009 1.0000                   0.2670
+  Proposed (MLP+CausalTCN+LSTM) 0.401 ± 0.012 0.841 ± 0.007 0.677 ± 0.006  0.373 ± 0.044       0.486 ± 0.011              7.8                      -      -                        -
+      Hybrid-5 (MLP+CNN-BiLSTM) 0.407 ± 0.012 0.845 ± 0.010 0.684 ± 0.006  0.391 ± 0.041       0.483 ± 0.011              6.0                 0.1066 0.8530                   0.1227
+  Hybrid-6 (MLP+Attention-LSTM) 0.401 ± 0.012 0.839 ± 0.006 0.679 ± 0.005  0.371 ± 0.038       0.480 ± 0.004              8.0                 0.9050 1.0000                   0.4173
+Hybrid-7 (MLP+Transformer-LSTM) 0.401 ± 0.012 0.842 ± 0.008 0.683 ± 0.006  0.377 ± 0.029       0.487 ± 0.018              7.2                 0.9358 1.0000                   0.1809
+           Reference (no skill)         0.070         0.500         0.482              -               0.100              NaN                    NaN    NaN                      NaN
 
 ============================================================================================================================================
 H3 full year / default
@@ -89,6 +127,8 @@ Hybrid-7 (MLP+Transformer-LSTM) 0.326 ± 0.015 0.811 ± 0.011 0.637 ± 0.009  0.
 
 SPANISH DROPOUT STUDY - VERDICTS (computed)
 ======================================================================
+[H2 after semester 1 | default] prevalence 0.070. Best PR-AUC: HistGradientBoosting 0.405 (ROC-AUC 0.849). Proposed: PR-AUC 0.403, ROC-AUC 0.837, Macro-F1 0.678, mean-rank 4.4/13; Friedman p=0.0001; Holm-significantly better than ['Logistic Regression', 'Random Forest', 'Standalone LSTM']; worse than none.
+[H2 after semester 1 | tuned] prevalence 0.070. Best PR-AUC: Random Forest 0.429 (ROC-AUC 0.850). Proposed: PR-AUC 0.401, ROC-AUC 0.841, Macro-F1 0.677, mean-rank 7.8/13; Friedman p=0.0000; Holm-significantly better than ['Logistic Regression', 'Standalone LSTM']; worse than ['Random Forest'].
 [H3 full year | default] prevalence 0.070. Best PR-AUC: HistGradientBoosting 0.567 (ROC-AUC 0.916). Proposed: PR-AUC 0.556, ROC-AUC 0.909, Macro-F1 0.745, mean-rank 4.4/13; Friedman p=0.0000; Holm-significantly better than ['Logistic Regression', 'Static MLP', 'Standalone LSTM']; worse than none.
 [H3 full year | tuned] prevalence 0.070. Best PR-AUC: Random Forest 0.583 (ROC-AUC 0.917). Proposed: PR-AUC 0.552, ROC-AUC 0.910, Macro-F1 0.745, mean-rank 6.8/13; Friedman p=0.0000; Holm-significantly better than ['Logistic Regression', 'Standalone LSTM']; worse than ['Random Forest'].
 [H1 enrolment time | default] prevalence 0.070. Best PR-AUC: HistGradientBoosting 0.326 (ROC-AUC 0.816). Proposed: PR-AUC 0.316, ROC-AUC 0.804, Macro-F1 0.637, mean-rank 7.6/13; Friedman p=0.0001; Holm-significantly better than ['Logistic Regression', 'Random Forest', 'Standalone LSTM']; worse than none.
@@ -96,9 +136,4 @@ SPANISH DROPOUT STUDY - VERDICTS (computed)
 
 5 folds => low power; 'tied' means no detectable difference. Dropout label A is inferred.
 
-All outputs in spain_outputs/ (total 106.4 min)
-EXIT=0
-To https://github.com/hanafithman79/studypathways_objective1
-   225710d..cafa9db  claude/stoic-brahmagupta-2nvz8v -> claude/stoic-brahmagupta-2nvz8v
-branch 'claude/stoic-brahmagupta-2nvz8v' set up to track 'origin/claude/stoic-brahmagupta-2nvz8v'.
-PUSHED=0
+All outputs in spain_outputs/ (total 0.6 min)
