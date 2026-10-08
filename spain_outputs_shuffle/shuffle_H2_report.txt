@@ -1,0 +1,3 @@
+MONTH-SHUFFLE TEST H2 after semester 1
+Proposed: original PR-AUC 0.4047; months shuffled -0.0064 (p=0.0026); reversed -0.0132; swapped students -0.0411; zeroed -0.0195
+Models whose PR-AUC drops significantly (Holm p<0.05) when months are shuffled: ['Standalone LSTM', 'Hybrid-1 (MLP+CNN+LSTM)', 'Hybrid-2 (MLP+BiLSTM)', 'Hybrid-3 (MLP+GRU)', 'Hybrid-5 (MLP+CNN-BiLSTM)', 'Proposed (MLP+CausalTCN+LSTM)']
