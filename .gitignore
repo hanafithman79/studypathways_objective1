@@ -18,3 +18,5 @@ spain_outputs_shuffle/cache/
 spain_entrants_outputs/cache/
 spain_entrants_ablation/cache/
 spain_entrants_shuffle/cache/
+spain_entrants_courses/cache/
+spain_courses_pooled/cache/

@@ -1,0 +1,6 @@
+[data] 2018: 20233 student-degree records, dropout(A) 7.1%
+[data] 2021: 20264 student-degree records, dropout(A) 6.7%
+[data] 2022: 20427 student-degree records, dropout(A) 7.3%
+[courses] 9833 records, 9747 students, dropout 13.18%, variants=13 seeds=[42, 43, 44] epochs=15 jobs=4 min_count=10
+[courses] {'records': 9833, 'records_with_courses': 9833, 'course_rows': 87789, 'dropped_by_cap': 1631, 'k_max': 24, 'courses_per_record': 8.76212752974677, 'share_records_identical_activity_across_courses': 0.00033593312281836866}
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
