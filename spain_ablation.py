@@ -76,12 +76,12 @@ VARIANTS = [
     ("no_dropout", "- Dropout", "architecture", dict(dropout=0.0)),
     ("linear_fusion", "- fusion MLP (linear head)", "architecture", dict(fusion="linear")),
     ("no_cw", "- class-weighted loss", "training", dict(cw_power=0.0)),
-    ("f_no_prior", "- prior-year pass rates", "features", dict(drop_num=PRIOR, zero_seq=(H == "H1"))),
+    ("f_no_prior", "- prior-year pass rates" + (" (static and sequence)" if H == "H1" else ""), "features", dict(drop_num=PRIOR, zero_seq=(H == "H1"))),
     ("f_no_credits", "- credits / semester results", "features", dict(drop_num=CREDITS)),
     ("f_no_entry", "- entry route & admission marks", "features", dict(drop_num=ENTRY_NUM, drop_cat=ENTRY_CAT)),
     ("f_no_background", "- family / campus / displacement", "features", dict(drop_cat=BACKGROUND_CAT)),
     ("f_no_degree", "- degree", "features", dict(drop_cat=["tit_hash"])),
-    ("f_no_lms", "- learning-platform activity (zeroed)", "features", dict(zero_seq=True)),
+    ("f_no_lms", "- learning-platform activity (zeroed)" if H != "H1" else "- temporal input (prior-year sequence zeroed)", "features", dict(zero_seq=True)),
 ]
 VKEYS = [v[0] for v in VARIANTS]
 VLABEL = {v[0]: v[1] for v in VARIANTS}
