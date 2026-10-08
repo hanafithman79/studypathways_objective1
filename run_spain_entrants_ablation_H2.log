@@ -1,0 +1,6 @@
+[ablation] horizon=H2 variants=17 seeds=[42, 43, 44] epochs=15 jobs=4
+[data] 2018: 20233 student-degree records, dropout(A) 7.1%
+[data] 2021: 20264 student-degree records, dropout(A) 6.7%
+[data] 2022: 20427 student-degree records, dropout(A) 7.3%
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:   25.6s

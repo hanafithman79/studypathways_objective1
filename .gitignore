@@ -16,3 +16,5 @@ spain_data/
 spain_outputs_ablation/cache/
 spain_outputs_shuffle/cache/
 spain_entrants_outputs/cache/
+spain_entrants_ablation/cache/
+spain_entrants_shuffle/cache/
