@@ -1,0 +1,4 @@
+ABLATION H2 after semester 1: full-model PR-AUC 0.405
+Removal significantly LOWERS PR-AUC (Holm p<0.05): ['- static branch', '- temporal branch', '- Dropout', '- credits / semester results', '- entry route & admission marks', '- learning-platform activity (zeroed)']
+Removal significantly RAISES PR-AUC (Holm p<0.05): none
+Largest drop: - static branch (-0.2878)
