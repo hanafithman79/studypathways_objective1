@@ -1,0 +1,15 @@
+[shuffle] horizon=H3 models=9 seeds=[42, 43] draws=5 jobs=4
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:  5.7min
+[Parallel(n_jobs=4)]: Done  45 out of  45 | elapsed: 24.6min finished
+       variant  pr_auc_original  pr_auc_variant   delta   ci_lo   ci_hi  rel_change_pct      p  p_holm
+shuffle_months           0.5524          0.5048 -0.0476 -0.0591 -0.0362         -8.6256 0.0003  0.0035
+reverse_months           0.5524          0.4588 -0.0936 -0.1079 -0.0794        -16.9514 0.0001  0.0013
+ swap_students           0.5524          0.4921 -0.0604 -0.0679 -0.0528        -10.9261 0.0000  0.0007
+          zero           0.5524          0.5201 -0.0323 -0.0371 -0.0275         -5.8449 0.0000  0.0012
+
+MONTH-SHUFFLE TEST H3 full year
+Proposed: original PR-AUC 0.5524; months shuffled -0.0476 (p=0.0003); reversed -0.0936; swapped students -0.0604; zeroed -0.0323
+Models whose PR-AUC drops significantly (Holm p<0.05) when months are shuffled: ['Standalone LSTM', 'Hybrid-1 (MLP+CNN+LSTM)', 'Hybrid-2 (MLP+BiLSTM)', 'Hybrid-3 (MLP+GRU)', 'Hybrid-5 (MLP+CNN-BiLSTM)', 'Hybrid-6 (MLP+Attention-LSTM)', 'Hybrid-7 (MLP+Transformer-LSTM)', 'Proposed (MLP+CausalTCN+LSTM)']
+done in 24.9 min
+EXIT=0
