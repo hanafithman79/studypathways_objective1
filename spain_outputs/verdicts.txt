@@ -1,0 +1,6 @@
+SPANISH DROPOUT STUDY - VERDICTS (computed)
+======================================================================
+[H2 after semester 1 | default] prevalence 0.070. Best PR-AUC: HistGradientBoosting 0.405 (ROC-AUC 0.849). Proposed: PR-AUC 0.403, ROC-AUC 0.837, Macro-F1 0.678, mean-rank 4.4/13; Friedman p=0.0001; Holm-significantly better than ['Logistic Regression', 'Random Forest', 'Standalone LSTM']; worse than none.
+[H2 after semester 1 | tuned] prevalence 0.070. Best PR-AUC: Random Forest 0.429 (ROC-AUC 0.850). Proposed: PR-AUC 0.401, ROC-AUC 0.841, Macro-F1 0.677, mean-rank 7.8/13; Friedman p=0.0000; Holm-significantly better than ['Logistic Regression', 'Standalone LSTM']; worse than ['Random Forest'].
+
+5 folds => low power; 'tied' means no detectable difference. Dropout label A is inferred.
