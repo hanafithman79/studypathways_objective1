@@ -1,0 +1,8 @@
+SPANISH DROPOUT STUDY - VERDICTS (computed)
+======================================================================
+[H2 after semester 1 | default] prevalence 0.132. Best PR-AUC: Hybrid-5 (MLP+CNN-BiLSTM) 0.574 (ROC-AUC 0.837). Proposed: PR-AUC 0.572, ROC-AUC 0.836, Macro-F1 0.743, mean-rank 2.6/13; Friedman p=0.0000; Holm-significantly better than ['Standalone LSTM', 'Hybrid-3 (MLP+GRU)']; worse than none.
+[H2 after semester 1 | tuned] prevalence 0.132. Best PR-AUC: Hybrid-5 (MLP+CNN-BiLSTM) 0.576 (ROC-AUC 0.839). Proposed: PR-AUC 0.567, ROC-AUC 0.836, Macro-F1 0.740, mean-rank 4.8/13; Friedman p=0.0008; Holm-significantly better than ['Static MLP', 'Standalone LSTM']; worse than none.
+[H1 enrolment time | default] prevalence 0.132. Best PR-AUC: Proposed (MLP+CausalTCN+LSTM) 0.397 (ROC-AUC 0.753). Proposed: PR-AUC 0.397, ROC-AUC 0.753, Macro-F1 0.647, mean-rank 4.0/13; Friedman p=0.0004; Holm-significantly better than ['Random Forest', 'Standalone LSTM']; worse than none.
+[H1 enrolment time | tuned] prevalence 0.132. Best PR-AUC: Random Forest 0.406 (ROC-AUC 0.756). Proposed: PR-AUC 0.382, ROC-AUC 0.753, Macro-F1 0.642, mean-rank 9.0/13; Friedman p=0.0014; Holm-significantly better than ['Standalone LSTM']; worse than none.
+
+5 folds => low power; 'tied' means no detectable difference. Dropout label A is inferred.
