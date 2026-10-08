@@ -13,3 +13,7 @@ Proposed: original PR-AUC 0.4047; months shuffled -0.0064 (p=0.0026); reversed -
 Models whose PR-AUC drops significantly (Holm p<0.05) when months are shuffled: ['Standalone LSTM', 'Hybrid-1 (MLP+CNN+LSTM)', 'Hybrid-2 (MLP+BiLSTM)', 'Hybrid-3 (MLP+GRU)', 'Hybrid-5 (MLP+CNN-BiLSTM)', 'Proposed (MLP+CausalTCN+LSTM)']
 done in 14.3 min
 EXIT=0
+To https://github.com/hanafithman79/studypathways_objective1
+   15d8218..2cb4a0a  claude/stoic-brahmagupta-2nvz8v -> claude/stoic-brahmagupta-2nvz8v
+branch 'claude/stoic-brahmagupta-2nvz8v' set up to track 'origin/claude/stoic-brahmagupta-2nvz8v'.
+PUSHED=0
