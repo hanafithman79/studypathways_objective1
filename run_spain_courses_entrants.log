@@ -1,6 +1,41 @@
-[data] 2018: 20233 student-degree records, dropout(A) 7.1%
-[data] 2021: 20264 student-degree records, dropout(A) 6.7%
-[data] 2022: 20427 student-degree records, dropout(A) 7.3%
 [courses] 9833 records, 9747 students, dropout 13.18%, variants=13 seeds=[42, 43, 44] epochs=15 jobs=4 min_count=10
 [courses] {'records': 9833, 'records_with_courses': 9833, 'course_rows': 87789, 'dropped_by_cap': 1631, 'k_max': 24, 'courses_per_record': 8.76212752974677, 'share_records_identical_activity_across_courses': 0.00033593312281836866}
 [Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:    5.2s
+[Parallel(n_jobs=4)]: Done  58 out of  65 | elapsed:   15.2s remaining:    1.8s
+[Parallel(n_jobs=4)]: Done  65 out of  65 | elapsed:   19.8s finished
+
+mean share of training course tokens by inferred semester: {'sem_unknown': 0.05, 'sem_S1': 0.376, 'sem_S2': 0.395, 'sem_mixed': 0.179}
+
+                                      label  pr_auc_mean  pr_auc_std  roc_auc_mean  capture_top10_mean
+   Current model (static + monthly totals)       0.5677      0.0337        0.8363              0.4789
+             + course branch (set pooling)       0.5699      0.0277        0.8350              0.4774
+           + course branch (ordered, LSTM)       0.5653      0.0300        0.8332              0.4761
+static + course branch (no monthly totals)       0.5683      0.0311        0.8342              0.4761
+          course branch without course ids       0.5719      0.0286        0.8350              0.4784
+              course branch without grades       0.5690      0.0278        0.8346              0.4779
+     course branch without course activity       0.5660      0.0299        0.8360              0.4779
+      course branch: ids and semester only       0.5656      0.0305        0.8359              0.4766
+   course branch: grades and semester only       0.5668      0.0296        0.8364              0.4792
+     Gradient boosting, no course features       0.5614      0.0368        0.8223              0.4699
+       Gradient boosting + course features       0.5632      0.0337        0.8297              0.4699
+         Random Forest, no course features       0.5285      0.0372        0.8196              0.4591
+           Random Forest + course features       0.5440      0.0331        0.8310              0.4673
+
+                                           contrast  delta_pr_auc   ci_lo  ci_hi  folds_a_better      p  p_holm
+                    course branch (set) vs current        0.0022 -0.0057 0.0102               4 0.4804  1.0000
+           course branch (ordered LSTM) vs current       -0.0024 -0.0127 0.0078               2 0.5494  1.0000
+course branch instead of monthly totals vs current        0.0006 -0.0048 0.0060               2 0.7688  1.0000
+               which courses only (ids) vs current       -0.0021 -0.0081 0.0039               2 0.3905  1.0000
+                     course grades only vs current       -0.0009 -0.0080 0.0062               3 0.7432  1.0000
+        gradient boosting: course features vs none        0.0018 -0.0071 0.0107               2 0.6049  1.0000
+            random forest: course features vs none        0.0155  0.0028 0.0283               5 0.0278  0.2776
+       identity effect: with vs without course ids       -0.0020 -0.0044 0.0004               1 0.0782  0.6257
+       grade effect: with vs without course grades        0.0009 -0.0004 0.0023               5 0.1161  0.8125
+  activity effect: with vs without course activity        0.0039 -0.0004 0.0083               5 0.0669  0.6019
+
+COURSE-LEVEL MODEL H2 after semester 1 (new entrants)
+prevalence 0.132; current model PR-AUC 0.568; course branch (set) 0.570
+Contrasts with Holm p<0.05: none
+data: {'records': 9833, 'records_with_courses': 9833, 'course_rows': 87789, 'dropped_by_cap': 1631, 'k_max': 24, 'courses_per_record': 8.76212752974677, 'share_records_identical_activity_across_courses': 0.00033593312281836866}
+done in 0.4 min
