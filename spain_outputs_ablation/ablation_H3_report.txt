@@ -1,0 +1,4 @@
+ABLATION H3 full year: full-model PR-AUC 0.557
+Removal significantly LOWERS PR-AUC (Holm p<0.05): ['- static branch', '- temporal branch', '- Dropout', '- fusion MLP (linear head)', '- credits / semester results', '- entry route & admission marks', '- learning-platform activity (zeroed)']
+Removal significantly RAISES PR-AUC (Holm p<0.05): none
+Largest drop: - static branch (-0.4152)
