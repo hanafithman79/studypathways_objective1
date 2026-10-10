@@ -1,0 +1,7 @@
+setting,model,accuracy,balanced_accuracy,macro_f1
+balanced,Gradient boosting,0.305,0.305,0.301
+balanced,Logistic regression,0.332,0.332,0.328
+balanced,Random forest,0.331,0.331,0.323
+natural,Gradient boosting,0.453,0.238,0.224
+natural,Logistic regression,0.461,0.241,0.227
+natural,Random forest,0.463,0.22,0.183

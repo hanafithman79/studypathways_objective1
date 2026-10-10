@@ -1,0 +1,6 @@
+CLASS-IMBALANCE DIAGNOSTIC (Colombian Saber 11, pre-university features)
+Programmes: 21; students: 12411; largest/smallest = 5318; programmes with <100 students: 15; <50: 12; single-student programmes: 2
+Five largest programmes: ['INDUSTRIAL ENGINEERING', 'CIVIL ENGINEERING', 'MECHANICAL ENGINEERING', 'CHEMICAL ENGINEERING', 'ELECTRONIC ENGINEERING']
+Natural mix (majority share 0.458): accuracy Gradient boosting 0.453, Logistic regression 0.461, Random forest 0.463
+Balanced, 849 per programme (chance 0.200): accuracy Gradient boosting 0.305, Logistic regression 0.332, Random forest 0.331
+Reading: the natural-mix accuracy sits at the majority share, and the perfectly balanced accuracy is only 10-13 points above chance, so removing the imbalance does not make the task easy: the features carry little information about the programme.
