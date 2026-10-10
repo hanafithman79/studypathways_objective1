@@ -1,0 +1,15 @@
+[data] loaded 12411 rows x 44 columns
+[ens] colombian_univ: N=12411 K=21 seed=2024 univ_feature=True jobs=15 trials=8
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  12 out of  15 | elapsed: 12.7min remaining:  3.2min
+[Parallel(n_jobs=4)]: Done  15 out of  15 | elapsed: 14.2min finished
+
+       setting   metric       contrast  mean_tne  mean_other    diff   ci_lo  ci_hi  folds_better      p  p_holm
+colombian_univ macro_f1       tne - rf    0.4714      0.4782 -0.0068 -0.0302 0.0167             2 0.4688  0.6356
+colombian_univ macro_f1      tne - hgb    0.4714      0.4655  0.0060 -0.0086 0.0205             3 0.3178  0.6356
+colombian_univ macro_f1 tne - proposed    0.4714      0.4324  0.0390  0.0298 0.0483             5 0.0003  0.0009
+colombian_univ macro_f1   tne - lookup    0.4714      0.3560  0.1154  0.0957 0.1351             5 0.0001     NaN
+
+CONFIRMATORY TNE TEST (protocol: HYBRID_ENSEMBLE_PROTOCOL.md), seed 2024
+[colombian_univ] primary macro_f1 (tuned_macro_f1): TNE 0.4714; components rf 0.4782, hgb 0.4655, proposed 0.4324; best component rf: diff -0.0068 [-0.0302, +0.0167], Holm p 0.6356; TNE better than all three: False; significantly worse than: none => NOT SUPPORTED
+done in 14.2 min
