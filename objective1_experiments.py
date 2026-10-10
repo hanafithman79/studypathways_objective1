@@ -67,7 +67,7 @@ DATA_URL = "https://raw.githubusercontent.com/hanafithman79/dataset/main/dataset
 OUT_DIR = os.environ.get("OUT_DIR", "objective1_outputs")
 RESULTS_CSV = os.environ.get("RESULTS_CSV", "objective1_rigorous_results.csv")
 
-SEED = 42
+SEED = int(os.environ.get("SEED", "42"))      # default 42 (all earlier results); other values give fresh folds / splits
 N_SPLITS = 5
 EPOCHS = 2 if QUICK_TEST else 15
 BATCH_SIZE = 128
