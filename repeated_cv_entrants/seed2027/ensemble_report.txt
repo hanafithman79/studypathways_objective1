@@ -1,0 +1,2 @@
+CONFIRMATORY TNE TEST (protocol: HYBRID_ENSEMBLE_PROTOCOL.md), seed 2027
+[spanish_entrants_H2] primary pr_auc (tuned): TNE 0.5798; components rf 0.5613, hgb 0.5544, proposed 0.5460; best component rf: diff +0.0186 [+0.0038, +0.0333], Holm p 0.0515; TNE better than all three: True; significantly worse than: none => NOT SUPPORTED

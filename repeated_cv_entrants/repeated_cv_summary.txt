@@ -1,0 +1,26 @@
+ADDENDUM A1: REPEATED CV, SPANISH NEW ENTRANTS AFTER SEMESTER 1 (post-protocol addition)
+==============================================================================
+seeds: ['seed2025', 'seed2026', 'seed2027']; units = 15 paired fold differences; Nadeau-Bengio corrected resampled t-test, Holm over 3 components
+
+PR-AUC per seed (mean over 5 folds):
+method       hgb  prevalence  proposed      rf     tne
+seed                                                  
+seed2025  0.5558      0.1318    0.5557  0.5579  0.5774
+seed2026  0.5484      0.1318    0.5543  0.5494  0.5702
+seed2027  0.5544      0.1318    0.5460  0.5613  0.5798
+
+new seeds (primary):
+  tne - rf: TNE 0.5758 vs 0.5562, diff +0.0196 [+0.0095, +0.0297], better in 15/15, p 0.0009, Holm 0.0028
+  tne - hgb: TNE 0.5758 vs 0.5529, diff +0.0230 [+0.0088, +0.0371], better in 15/15, p 0.0036, Holm 0.0072
+  tne - proposed: TNE 0.5758 vs 0.5520, diff +0.0238 [+0.0054, +0.0422], better in 14/15, p 0.0148, Holm 0.0148
+new seeds (secondary):
+  tne - rf: TNE 0.8388 vs 0.8251, diff +0.0137 [+0.0069, +0.0205], better in 15/15, p 0.0007, Holm 0.0021
+  tne - hgb: TNE 0.8388 vs 0.8267, diff +0.0121 [+0.0037, +0.0205], better in 14/15, p 0.0082, Holm 0.0165
+  tne - proposed: TNE 0.8388 vs 0.8301, diff +0.0087 [-0.0021, +0.0194], better in 13/15, p 0.1061, Holm 0.1061
+new seeds + seed 2024 (secondary):
+  tne - rf: TNE 0.5789 vs 0.5566, diff +0.0223 [+0.0095, +0.0352], better in 20/20, p 0.0017, Holm 0.0035
+  tne - hgb: TNE 0.5789 vs 0.5564, diff +0.0225 [+0.0109, +0.0341], better in 20/20, p 0.0007, Holm 0.0020
+  tne - proposed: TNE 0.5789 vs 0.5565, diff +0.0225 [+0.0048, +0.0402], better in 18/20, p 0.0154, Holm 0.0154
+
+VERDICT (primary): TNE beats all three components in mean: True; best component rf diff +0.0196, Holm p 0.0028; significantly worse than: none => SUPPORTED
+This addendum does not change the main verdict (2 of 5 settings supported).
