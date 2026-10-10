@@ -1,0 +1,17 @@
+[ens] spanish_pooled: records=60924 students=39364 dropout=7.05% seed=2024 horizons=['H2', 'H3'] jobs=30 trials=6 search_frac=0.5
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed: 10.9min
+[Parallel(n_jobs=4)]: Done  30 out of  30 | elapsed: 21.5min finished
+
+          setting metric       contrast  mean_tne  mean_other   diff   ci_lo  ci_hi  folds_better      p  p_holm
+spanish_pooled_H2 pr_auc       tne - rf    0.4347      0.4199 0.0148  0.0056 0.0240             5 0.0110  0.0220
+spanish_pooled_H2 pr_auc      tne - hgb    0.4347      0.4117 0.0230  0.0081 0.0378             5 0.0128  0.0220
+spanish_pooled_H2 pr_auc tne - proposed    0.4347      0.4121 0.0227  0.0107 0.0346             5 0.0063  0.0190
+spanish_pooled_H3 pr_auc       tne - rf    0.5949      0.5785 0.0164 -0.0004 0.0333             5 0.0534  0.0534
+spanish_pooled_H3 pr_auc      tne - hgb    0.5949      0.5798 0.0152  0.0091 0.0213             5 0.0023  0.0070
+spanish_pooled_H3 pr_auc tne - proposed    0.5949      0.5639 0.0310  0.0180 0.0440             5 0.0027  0.0070
+
+CONFIRMATORY TNE TEST (protocol: HYBRID_ENSEMBLE_PROTOCOL.md), seed 2024
+[spanish_pooled_H2] primary pr_auc (tuned): TNE 0.4347; components rf 0.4199, hgb 0.4117, proposed 0.4121; best component rf: diff +0.0148 [+0.0056, +0.0240], Holm p 0.0220; TNE better than all three: True; significantly worse than: none => SUPPORTED
+[spanish_pooled_H3] primary pr_auc (tuned): TNE 0.5949; components rf 0.5785, hgb 0.5798, proposed 0.5639; best component hgb: diff +0.0152 [+0.0091, +0.0213], Holm p 0.0070; TNE better than all three: True; significantly worse than: none => SUPPORTED
+done in 21.7 min

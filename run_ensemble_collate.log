@@ -1,0 +1,16 @@
+CONFIRMATORY TEST OF THE TREE-NEURAL ENSEMBLE (decision rule from HYBRID_ENSEMBLE_PROTOCOL.md)
+==============================================================================
+colombian_pre: macro_f1 TNE 0.0967 | best component hgb 0.0955 | diff +0.0013 [-0.0145, +0.0170], better in 2/5 folds, Holm p within setting 0.8347 (global 1.0000) -> NOT SUPPORTED; significantly worse than: none
+colombian_univ: macro_f1 TNE 0.4714 | best component rf 0.4782 | diff -0.0068 [-0.0302, +0.0167], better in 2/5 folds, Holm p within setting 0.6356 (global 1.0000) -> NOT SUPPORTED; significantly worse than: none
+spanish_entrants_H2: pr_auc TNE 0.5884 | best component proposed 0.5698 | diff +0.0185 [-0.0027, +0.0398], better in 4/5 folds, Holm p within setting 0.0729 (global 0.3645) -> NOT SUPPORTED; significantly worse than: none
+spanish_pooled_H2: pr_auc TNE 0.4347 | best component rf 0.4199 | diff +0.0148 [+0.0056, +0.0240], better in 5/5 folds, Holm p within setting 0.0220 (global 0.1098) -> SUPPORTED; significantly worse than: none
+spanish_pooled_H3: pr_auc TNE 0.5949 | best component hgb 0.5798 | diff +0.0152 [+0.0091, +0.0213], better in 5/5 folds, Holm p within setting 0.0070 (global 0.0303) -> SUPPORTED; significantly worse than: none
+
+TNE against the university-lookup baseline (Colombian, with university):
+  colombian_univ macro_f1 (tuned_macro_f1): TNE 0.4714 vs lookup 0.3560, diff +0.1154 [+0.0957, +0.1351], p 0.0001
+  colombian_univ bal_acc (tuned_macro_f1): TNE 52.7313 vs lookup 36.5060, diff +16.2253 [+12.3669, +20.0837], p 0.0003
+  colombian_univ top3 (tuned_top3): TNE 92.4180 vs lookup 92.2972, diff +0.1208 [-0.7072, +0.9488], p 0.7061
+  colombian_univ accuracy (tuned_top3): TNE 60.7203 vs lookup 59.5762, diff +1.1441 [-0.2205, +2.5086], p 0.0804
+
+Settings supported: 2 of 5; settings missing: none; TNE significantly worse than a component somewhere: False
+OVERALL: the protocol's overall claim is NOT met; report the per-setting results as they are.
