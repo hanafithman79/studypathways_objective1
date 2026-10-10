@@ -21,3 +21,4 @@ spain_entrants_shuffle/cache/
 spain_entrants_courses/cache/
 spain_courses_pooled/cache/
 hybrid_ensemble_*/cache/
+repeated_cv_entrants/*/cache/
