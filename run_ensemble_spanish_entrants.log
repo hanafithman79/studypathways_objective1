@@ -1,0 +1,13 @@
+[ens] spanish_entrants: records=9833 students=9747 dropout=13.18% seed=2024 horizons=['H2'] jobs=15 trials=6 search_frac=1.0
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  12 out of  15 | elapsed:  2.0min remaining:   30.1s
+[Parallel(n_jobs=4)]: Done  15 out of  15 | elapsed:  2.3min finished
+
+            setting metric       contrast  mean_tne  mean_other   diff   ci_lo  ci_hi  folds_better      p  p_holm
+spanish_entrants_H2 pr_auc       tne - rf    0.5884      0.5579 0.0305  0.0113 0.0497             5 0.0117  0.0233
+spanish_entrants_H2 pr_auc      tne - hgb    0.5884      0.5671 0.0213  0.0180 0.0245             5 0.0001  0.0002
+spanish_entrants_H2 pr_auc tne - proposed    0.5884      0.5698 0.0185 -0.0027 0.0398             4 0.0729  0.0729
+
+CONFIRMATORY TNE TEST (protocol: HYBRID_ENSEMBLE_PROTOCOL.md), seed 2024
+[spanish_entrants_H2] primary pr_auc (tuned): TNE 0.5884; components rf 0.5579, hgb 0.5671, proposed 0.5698; best component proposed: diff +0.0185 [-0.0027, +0.0398], Holm p 0.0729; TNE better than all three: True; significantly worse than: none => NOT SUPPORTED
+done in 2.3 min
