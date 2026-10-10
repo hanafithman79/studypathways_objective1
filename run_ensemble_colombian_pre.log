@@ -1,0 +1,3 @@
+[data] loaded 12411 rows x 44 columns
+[ens] colombian_pre: N=12411 K=21 seed=2024 univ_feature=False jobs=15 trials=8
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
