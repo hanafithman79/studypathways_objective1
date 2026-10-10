@@ -53,4 +53,16 @@ three components.
 
 ## Deviations after this file was committed
 
-None yet.
+**A1 (post-protocol addition, written before its runs, after the main result was known).** The main run left the
+Spanish new-entrants setting short of the rule (difference +0.0185 PR-AUC, 4 of 5 folds, within-setting Holm p 0.073).
+That setting is small, so a repeated cross-validation is added. It does **not** change the main verdict above (2 of 5
+settings supported; overall claim not met); it only reports whether the new-entrants result firms up.
+
+* Setting: Spanish new entrants, after semester 1 (H2), `ENTRANTS_ONLY=1`, `SEARCH_FRAC=1.0`, same components and the
+  same unweighted average.
+* Three further fold seeds: 2025, 2026, 2027 (new outer folds, inner splits and model seeds each time).
+* Primary analysis: the 15 paired differences (3 seeds x 5 folds) of PR-AUC, TNE minus each component, tested with the
+  Nadeau-Bengio corrected resampled t-test (variance factor 1/15 + 1/4, 14 degrees of freedom), Holm over the 3
+  components. Same decision rule: TNE beats all three components in mean and the Holm p against the best component is
+  below 0.05. Secondary: ROC-AUC, and the 20 differences that also include the seed-2024 run.
+* Output: `repeated_cv_entrants/`; scripts `hybrid_ensemble_eval.py` (unchanged) and `hybrid_ensemble_repeated_cv.py`.
